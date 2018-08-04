@@ -99,6 +99,7 @@ nav .row {padding-top: 45px; }
 
 
 
+
 /* -------- Buttons -------- */
 
 
@@ -136,49 +137,49 @@ nav .row {padding-top: 45px; }
 /* -------- Image Section -------- */
 
 
-.recent-pics {
+.img-box {
     
-    background-color: #f4f4f4;
-    width: 1140px;
-    margin: 0 auto;
-    list-style: none;
-    
-    
-}
-
-.recent-pics li {
-    float: left;
+    width: 250px;
+    display: inline-block;
+    overflow: hidden;
     margin: 0 65px;
-    width: 250px;
+    float: left;
 }
-
-.recent-pics li img {
-    width: 250px;
-    height: auto;
-}
-
 
 
 /* -------- Image Title -------- */
 
 
-.recent-pics li p {
-    
-
-}
 
 .img-title {
     
-    font-weight: 400;
-    margin: 2.5px 0 25px 0; 
-    width: 100%;
+    font-weight: 400; 
     overflow: hidden;
+    display: inline-block;
+}
+
+.title-info {
+    
+    margin-top: 4px;
+    border-bottom: 2px solid #cecece;
+    padding-bottom: 1px;
+    
 }
 
 .img-desc {
     
-    color: #6e6e6e;
-    overflow: hidden;
+    color: #6a6a6a;
     font-size: 75%;
     max-width: 100%;
+    
+}
+
+.status-box {
+    
+    padding: 3px;
+    display: inline-block;
+    float: right;
+    font-size: 75%;
+    background-color: #1af72c;
+    border-radius: 3.5px;
 }
