@@ -62,11 +62,10 @@ h1 {
     font-size: 200%;
 }
 
-.orange {
-    
-    color: #e07519;
-    
-}
+.orange {color: #e07519; }
+
+.hamburger-menu {display: none; }
+
 
 /* -------- Navigation -------- */
 
@@ -153,6 +152,7 @@ nav .row {padding-top: 45px; }
 
 
 
+
 .img-title {
     
     font-weight: 400; 
@@ -185,3 +185,10 @@ nav .row {padding-top: 45px; }
     background-color: #1af72c;
     border-radius: 3.5px;
 }
+
+
+/* -------- Image Title -------- */
+
+.mobile-nav {display: none; }
+
+.mobile-transition {display: none; }
