@@ -80,13 +80,13 @@ nav .row {padding-top: 45px; }
     list-style: none;
     display: inline-block;
     float: right;
-    margin-top: 5px;
+    margin-top: 12px;
 }
 
 .main-nav li {
     
-    
-    margin-right: 60px;
+    float: left;
+    margin: 0 50px;
     display: inline-block;
 }
 
@@ -140,10 +140,12 @@ nav .row {padding-top: 45px; }
 .img-box {
     
     width: 250px;
-    display: inline-block;
-    overflow: hidden;
     margin: 0 65px;
+    margin-bottom: 30px;
+    display: inline-block;
     float: left;
+    overflow: hidden;
+    
 }
 
 

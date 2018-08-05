@@ -1,0 +1,51 @@
+@media only screen and (max-width: 1140px) {
+    
+    .row {
+        
+        width: 100%;
+        
+    }
+
+    h1 {
+        
+        
+        margin-left: 30px;
+    }
+    
+    
+    .img-box {
+
+        width: 30%;
+        margin: 0 10%;
+        margin-bottom: 30px;
+        
+
+    }
+    
+    
+}
+
+@media only screen and (max-width: 768px) and (min-width: 480px) {
+    
+    .main-nav li a {
+        
+        font-size: 80%;
+    }
+    
+    h1 {
+        
+        font-size: 150%;
+        
+        
+    }
+    
+    
+}
+
+@media only screen and (max-width: 480px) {
+    
+    
+}
+
+
+
