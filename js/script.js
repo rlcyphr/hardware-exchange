@@ -4,9 +4,13 @@ $(document).ready(function() {
        
       $('.mobile-nav').toggle();
        
-   }); 
+   });
     
     
-    
-    
+    $(window).resize(function() {
+        
+       $('.mobile-nav').css("display","none");
+
+    });
+ 
 });

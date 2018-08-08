@@ -1,0 +1,160 @@
+/* -------- Setup -------- */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+a {text-decoration: none; }
+
+
+/* -------- Titles -------- */
+
+
+h1 {
+    display: inline-block;
+    font-family: 'Varela Round', sans-serif;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    font-size: 200%;
+    color: #fff;
+}
+
+.orange {color: #e07519; }
+
+
+/* -------- Reusable units -------- */
+
+
+.row {
+    
+    width: 1140px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+
+/* -------- Navigation -------- */
+
+
+
+nav {background-color: #000; }
+
+.main-nav {
+    
+    list-style: none;
+    display: inline-block;
+    float: right;
+    margin-top: 13px;
+}
+
+.main-nav li {
+    
+    float: left;
+    margin: 0 50px;
+    display: inline-block;
+}
+
+.main-nav li a {
+    
+    font-size: 90%;
+    color: #fff;
+}
+
+/* -------- Mobile Navigation -------- */
+
+.mobile-nav {background-color: #393939; }
+
+.mobile-nav a {
+
+    display: block;
+    color: #fff;
+    padding: 15px;
+
+}
+
+.mobile-nav a:hover {background-color: #535353; }   
+
+.mobile-nav, .hamburger-menu {display: none; }
+
+.hamburger-menu {
+    width: 40px;
+    height: auto;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.15);
+}
+
+/* -------- Registration form -------- */
+
+.input-box {
+    margin-bottom: 25px;
+}
+
+.input-box input {
+    padding: 15px;
+    float: right;
+}
+
+.input-box p {
+    
+
+    display: inline-block;
+    margin: 10px 30px 10px 10px;  
+
+}
+
+input[type=submit] {
+    
+    background-color: #e07519;
+    border: none;
+    transition: background-color, transform 0.3s;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    
+    background-color: #b96115;
+    transform: scale(1.15);
+}
+
+
+
+.register-box {
+    display: inline-block;
+    margin: 10% 0 0 50%;
+    transform: translate(-50%, 0);
+
+}
+
+.register-box .input-box:last-of-type {
+    
+    margin-top: 35px;
+    transform: scale(1.5);
+    float:left;
+    margin-left: 50%;
+    
+}
+
+h2 {
+    
+    font-weight: 600;
+    margin-bottom: 40px;
+    display: inline-block;
+    margin-left: 50%;
+
+}

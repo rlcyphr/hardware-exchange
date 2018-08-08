@@ -1,7 +1,6 @@
 /* -------- Setup -------- */
 
 
-
 * {
     margin: 0;
     padding: 0;
@@ -19,15 +18,15 @@ a {
     text-decoration: none;
 }
 
-/* -------- Headers -------- */
 
+/* -------- Headers -------- */
 
 
 .header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/logo.JPG");
     background-size: cover;
     height: 100vh;
-    color: #fff;
+    
 }
 
 h2 {
@@ -42,9 +41,7 @@ h2 {
 }
 
 
-
 /* -------- Reusable parts -------- */
-
 
 
 .row {
@@ -57,12 +54,12 @@ h2 {
 /* -------- Logo -------- */
 
 
-
 h1 {
     display: inline-block;
     font-family: 'Varela Round', sans-serif;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     font-size: 200%;
+    color: #fff;
 }
 
 .orange {color: #e07519; }
@@ -71,7 +68,6 @@ h1 {
 
 
 /* -------- Navigation -------- */
-
 
 
 nav .row {padding-top: 45px; }
@@ -192,11 +188,24 @@ nav .row {padding-top: 45px; }
 
 
 
-.mobile-nav {
+/* -------- Mobile nav -------- */
 
-    display: none;
+.mobile-nav {
+        
+    display: none;  
+    background-color: #393939;
+    margin-top: 10px;
+}
     
+.mobile-nav a {
+
+    display: block;
+    color: #fff;
+    padding: 15px 10px;
 
 }
 
+.mobile-nav a:hover {
 
+    background-color: #535353;
+}

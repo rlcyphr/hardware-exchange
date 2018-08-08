@@ -1,4 +1,9 @@
-@media only screen and (max-width: 1140px) and (min-width: 768px) {
+@media only screen and (min-width: 1140px) {
+    
+    .mobile-nav, .hamburger-menu {display: none; }
+}
+
+@media only screen and (max-width: 1139px) and (min-width: 768px) {
     
     .row {
         
@@ -27,12 +32,8 @@
         font-size: 105%;
     }
     
-    .hamburger-menu {
-        
-        display: none;
-    }
     
-    
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -102,25 +103,7 @@
         
     }
     
-    .mobile-nav {
-        
-        
-        background-color: #393939;
-        margin-top: 10px;
-    }
     
-    .mobile-nav a {
-
-        display: block;
-        color: #fff;
-        padding: 15px 10px;
-    
-    }
-
-    .mobile-nav a:hover {
-
-        background-color: #535353;
-    }
 
     
     
