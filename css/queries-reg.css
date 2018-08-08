@@ -12,8 +12,14 @@
     .main-nav {display: none; }
     .hamburger-menu {display: inline-block;}
 
+
+}
+
+@media only screen and (max-width: 640px) {
     
     
-    
+    .input-box p {
+        float: none;
+    }
     
 }

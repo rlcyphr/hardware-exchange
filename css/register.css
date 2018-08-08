@@ -101,60 +101,65 @@ nav {background-color: #000; }
 /* -------- Registration form -------- */
 
 .input-box {
+    
     margin-bottom: 25px;
+    overflow: hidden;
 }
 
+.sub-btn {
+    overflow: visible;
+}
+
+
 .input-box input {
+    
     padding: 15px;
     float: right;
 }
 
 .input-box p {
     
-
-    display: inline-block;
-    margin: 10px 30px 10px 10px;  
+    float: left;
+    margin-right: 20px;
 
 }
 
 input[type=submit] {
+   
     
     background-color: #e07519;
     border: none;
     transition: background-color, transform 0.3s;
     color: #fff;
     cursor: pointer;
+    padding: 15px 20px;
+    margin: 20px 0 10px 0;
+    border-radius: 3px;
+    font-size: 90%;
 }
 
 input[type=submit]:hover {
     
     background-color: #b96115;
-    transform: scale(1.15);
 }
 
 
 
-.register-box {
-    display: inline-block;
-    margin: 10% 0 0 50%;
-    transform: translate(-50%, 0);
+.center-box {
 
-}
-
-.register-box .input-box:last-of-type {
-    
-    margin-top: 35px;
-    transform: scale(1.5);
-    float:left;
     margin-left: 50%;
-    
+    margin-top: 10%;
+    transform: translate(-50%);
+    display: inline-block;
 }
+
 
 h2 {
     
     font-weight: 600;
     margin-bottom: 40px;
-    display: inline-block;
     margin-left: 50%;
+    transform: translate(-50%);
+    display: inline-block;
 
 }
