@@ -9,6 +9,7 @@ var express = require("express");
 var expressHandlebars = require("express-handlebars");
 var pg = require("pg");
 var body_parser = require("body-parser");
+const bcrypt = require('bcrypt');
 const config = {
     user: 'postgres',
     database: 'hardware-exchange',
@@ -34,6 +35,7 @@ app.use('/', express.static(path.join(process.cwd(), 'public'))) // set static a
 app.get('/', (req, res) => {res.render('index')} ); // get website page from webpage root (/views) and render them 
 app.get('/register', (req, res) => {res.render('register')} );
 app.get('/thanks', (req, res) => {res.render('thanks')} );
+app.get('/login', (req, res) => {res.render('login')} );
 
 // -------- api calls --------
 
@@ -87,9 +89,11 @@ app.post("/register", (req, res) => {
     // get details from the form based on the names of the included fields 
     
     var email = req.body.email || '';
-    var passwordHash = req.body.passwd || '';
+    var password = req.body.passwd || '';
     var dateCreated = Date.now();
     var username = req.body.username || '';
+
+    var passwordHash = bcrypt.hashSync(password, 10);
 
     // call database
     

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Hardware Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="../css/login.css" rel="stylesheet" type="text/css">
+    <link href="../css/queries.css" rel="stylesheet" type="text/css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/script.js"></script>
+    
+</head>
+
+<body>
+
+    <header>
+        
+        <nav>
+
+            <div class="row">
+                
+                <h1>hardware <span class="orange">exchange</span></h1>
+                
+                <ul class="main-nav">
+                    <li><a href="#">Log in</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>   
+                
+                <div class="hamburger-menu"><img src="img/icons/menu.svg"></div> 
+ 
+            </div>  
+            
+
+            <div class="mobile-nav">
+                <a href="#">Log in</a>
+                <a href="#">Register</a>
+            </div>
+            
+        </nav>
+        
+    </header>
+    
+    <section class="login-user">
+        
+        
+        <div class="center-box">
+            <div><h2>Log in</h2></div>
+            <form method="post" action="/login">
+                
+                <div class="input-box">
+                    <p>Username:</p>                   
+                    <input type="text" name="username" required>
+                </div>
+                <div class="input-box">
+                    <p>Password:</p>                    
+                    <input type="password" name="passwd" required>
+                </div>
+                <div id="msg"></div>
+                <div class="input-box sub-btn">
+                    <input type="submit" value="Log in">
+                </div>
+                
+            </form>
+            
+        </div>
+    
+    
+    
+    </section>
+    
+</body>
+    
