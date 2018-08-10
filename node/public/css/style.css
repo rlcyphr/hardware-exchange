@@ -76,7 +76,6 @@ nav .row {padding-top: 45px; }
 .main-nav {
     
     list-style: none;
-    display: inline-block;
     float: right;
     margin-top: 12px;
 }
@@ -85,7 +84,6 @@ nav .row {padding-top: 45px; }
     
     float: left;
     margin: 0 50px;
-    display: inline-block;
 }
 
 .main-nav li a {
@@ -141,7 +139,6 @@ nav .row {padding-top: 45px; }
     width: 250px;
     margin: 0 65px;
     margin-bottom: 30px;
-    display: inline-block;
     float: left;
     overflow: hidden;
     
@@ -179,7 +176,6 @@ nav .row {padding-top: 45px; }
 .status-box {
     
     padding: 3px;
-    display: inline-block;
     float: right;
     font-size: 75%;
     background-color: #1af72c;
