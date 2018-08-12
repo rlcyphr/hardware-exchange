@@ -16,18 +16,23 @@ body {
 a {text-decoration: none; }
 
 
-/* -------- Titles -------- */
+/* -------- Logo -------- */
 
 
-h1 {
-    display: inline-block;
+#page-header-text {display: inline-block; }
+
+#page-header-text a {
     font-family: 'Varela Round', sans-serif;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     font-size: 200%;
+    font-weight: 600;
     color: #fff;
 }
 
+
 .orange {color: #e07519; }
+
+.hamburger-menu {display: none; }
 
 
 /* -------- Reusable units -------- */
@@ -45,42 +50,38 @@ h1 {
 
 
 
-nav {background-color: #000; }
+nav .row {
+    padding-top: 15px;
+    background-color: #000;
+
+}
+
 
 .main-nav {
     
     list-style: none;
     float: right;
-    margin-top: 13px;
+    
 }
 
 .main-nav li {
     
-    float: left;
-    margin: 0 50px;
+    float: right;
+    margin: 0 40px;
+}
+
+.main-nav li:last-of-type {
+    margin-right: 0;
 }
 
 .main-nav li a {
     
-    font-size: 90%;
+    font-size: 110%;
     color: #fff;
 }
+
 
 /* -------- Mobile Navigation -------- */
-
-.mobile-nav {background-color: #393939; }
-
-.mobile-nav a {
-
-    display: block;
-    color: #fff;
-    padding: 15px;
-
-}
-
-.mobile-nav a:hover {background-color: #535353; }   
-
-.mobile-nav, .hamburger-menu {display: none; }
 
 .hamburger-menu {
     width: 40px;
@@ -161,3 +162,10 @@ h2 {
     display: inline-block;
 
 }
+
+/* -------- Classes for processing in JS -------- */
+
+
+.hidden {display: none; }
+
+.nav-active {width: 100%; }

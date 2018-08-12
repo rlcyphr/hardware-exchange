@@ -2,6 +2,14 @@
 
 $(document).ready(function() {
 
+    if ($(document).width() < 768) {
+
+        console.log('test');
+        $('ul li a').addClass('hidden');
+
+
+    }
+
     $('.hamburger-menu').click(function() {
         
 
