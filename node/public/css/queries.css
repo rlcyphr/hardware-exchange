@@ -52,8 +52,6 @@
 
     .main-nav {
         transform: translate(0, 0); 
-        width: 100%;
-
     }
 
     .main-nav li:last-of-type {
@@ -64,8 +62,31 @@
     .main-nav li {
 
         float: none;
+        margin: 0;
     }
 
+    .main-nav.nav-active {
+        margin-top: 15px;
+        background-color: #393939;
+
+    }
+
+    .main-nav.nav-active li a {
+        display: block;
+        padding: 15px;
+
+    }
+
+    .main-nav.nav-active li a:hover {
+        background-color: #535353;
+
+    }
+
+    .main-nav.nav-active .hamburger-menu {
+        position: absolute;
+        top: -52.5px;
+        right: 0;
+    }
 
     
 

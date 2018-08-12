@@ -79,7 +79,7 @@ nav .row {padding-top: 45px; }
     
     list-style: none;
     float: right;
-    transform: translate(0, 50%);  
+    
 }
 
 .main-nav li {
@@ -187,31 +187,10 @@ nav .row {padding-top: 45px; }
 }
 
 
-
-/* -------- Mobile nav -------- */
-
-.mobile-nav {
-        
-    display: none;  
-    background-color: #393939;
-    margin-top: 10px;
-}
-    
-.mobile-nav a {
-
-    display: block;
-    color: #fff;
-    padding: 15px 10px;
-
-}
-
-.mobile-nav a:hover {
-
-    background-color: #535353;
-}
-
-
 /* -------- Classes for processing in JS -------- */
 
 
 .hidden {display: none; }
+
+.nav-active {width: 100%; }
+
