@@ -1,21 +1,14 @@
 @media only screen and (min-width: 1140px) {
     
     .mobile-nav, .hamburger-menu {display: none; }
+    
 }
 
 @media only screen and (max-width: 1139px) and (min-width: 768px) {
     
-    .row {
-        
-        width: 100%;
-        
-    }
+    .row {width: 100%; }
 
-    h1 {
-        
-        
-        margin-left: 30px;
-    }
+    #page-header-text {margin-left: 30px; }
     
     
     .img-box {
@@ -23,65 +16,76 @@
         width: 30%;
         margin: 0 10%;
         margin-bottom: 30px;
-        
 
     }
     
-    .main-nav li a {
-        
-        font-size: 105%;
-    }
-    
-    
+    .main-nav li a {font-size: 105%; }
 
 }
 
 @media only screen and (max-width: 768px) {
     
     .row {
-        
         width: 100%;
-        
-    }
-     
-    .main-nav li a {
-        
-        font-size: 80%;
-    }
+        padding: 15px 0;
     
-    h1 {
-        
-        font-size: 150%;
-        margin-left: 5%;
-        padding-top: 0;
+    }
 
-    }
+    /* -------- HW exchange logo at the top of the page -------- */
+
+    #page-header-text {margin-left: 30px; }
+
+    #page-header-text a {font-size: 150%; }
+
     
-    /* Nav bar on smaller screens  */
+    /* -------- Mobile navigation - text formatting --------  */
     
     
     nav .row {
         
-        position: fixed;
+        /*position: fixed;*/
         z-index: 1;
-        padding-top: 15px;
+        padding: 15px 0;
         background: rgba(0, 0, 0, 0.75);
+        
     }
+
+    .main-nav {
+        transform: translate(0, 0); 
+        width: 100%;
+
+    }
+
+    .main-nav li:last-of-type {
+        margin: 0;
+        float: right;
+    }
+
+    .main-nav li {
+
+        float: none;
+    }
+
+
     
-    .main-nav li {display: none; }
+
+    /* -------- Mobile navigation - hamburger menu -------- */
 
     .hamburger-menu {
-        
+
+        display: block;
         width: 40px;
-        margin-right: 30px;
-        height: auto;
-        float: right;
-        transition: transform 0.3s;
+        height: 40px;
         cursor: pointer;    
+        transition: transform 0.3s;
+        background-image: url('../img/icons/menu.svg');
+        margin-right: 30px;
     }
-    
+
     .hamburger-menu:hover {transform: scale(1.15); }
     
+    /* -------- containers for item displays -------- */
+
     .img-box {
         
         width: 60%;
@@ -93,19 +97,7 @@
         width: 80%;
         margin-left: 10%; 
     }
-    
-    .main-search {
-        
-        position: absolute;
-        bottom: 22.5%;
-        margin-left: -31px;
-        
-    }
-    
-    
 
-    
-    
 }
 
 

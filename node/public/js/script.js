@@ -1,15 +1,26 @@
-$(document).ready(function() {
+$(document).ready(() => {
+
+    $('ul li a').addClass('hidden');
     
-   $('.hamburger-menu').click(function() {
-       
-      $('.mobile-nav').toggle();
-       
-   });
-    
-    
-    $(window).resize(function() {
+    $('.hamburger-menu').click(() => {
         
-       $('.mobile-nav').css("display","none");
+
+        if ($('ul li a').hasClass('hidden') ) {
+
+            $('ul li a').removeClass('hidden');
+
+        } else {
+
+            $('ul li a').addClass('hidden');
+
+        }
+        
+    });
+
+
+    $(window).resize(() => {
+        
+        $('ul li a').css("display","none");
 
     });
  

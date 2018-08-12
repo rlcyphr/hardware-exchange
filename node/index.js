@@ -71,23 +71,48 @@ app.get("/componenttypes", (req, res) => {
     
 });
 
+// -------- check for email duplications --------
+
+function emailExists(email, callback) {
+    // build sql command
+    var sql = '';
+    sql = sql + 'SELECT * FROM public."user" ';
+    sql = sql + 'WHERE email = $1';
+
+    // login to the server with credentials
+    pool.connect((error, client, done) => { 
+        
+        // run sql insert command and provide details - these are returned from the form sent from the client
+        client.query(sql, [email], (error, result) => { 
+        
+            if (error) {         
+
+                console.log(error);
+
+            } else {
+                // if there is no matching email that has already been used, return false
+                if (result.rows.length == 0) {  
+                    client.end();
+                    callback(false);    
+
+                } else {
+
+                    client.end();
+                    callback(true);
+                }
+            }
+            
+            
+        });    
+   
+    });
+
+}
+
+// -------- register new user --------
 
 app.post("/register", (req, res) => {
 
-    // register new user and insert into table
-
-    var sql = '';
-    sql = sql + 'INSERT INTO public."user" ( ';
-    sql = sql + 'email, ';
-    sql = sql + '"passwordHash", ';
-    sql = sql + '"dateCreated", ';
-    sql = sql + '"username"';
-    sql = sql + ' ) ';
-    sql = sql + 'VALUES ($1, $2, $3, $4); ';
-
-    // instruction for the database to run
-    // get details from the form based on the names of the included fields 
-    
     var email = req.body.email || '';
     var password = req.body.passwd || '';
     var dateCreated = Date.now();
@@ -95,32 +120,124 @@ app.post("/register", (req, res) => {
 
     var passwordHash = bcrypt.hashSync(password, 10);
 
+    // -------- check for email dupes --------
+
+    if ( emailExists(email, (exists) => {
+
+        if (exists) {
+
+            res.redirect('login?msg=dupe-email');
+
+        } else {
+
+            // -------- add the new user's details into the server if they match the criteria needed --------
+
+            var sql = '';
+            sql = sql + 'INSERT INTO public."user" ( ';
+            sql = sql + 'email, ';
+            sql = sql + '"passwordHash", ';
+            sql = sql + '"dateCreated", ';
+            sql = sql + 'username';
+            sql = sql + ' ) ';
+            sql = sql + 'VALUES ($1, $2, $3, $4); ';
+
+            // -------- call database --------
+            
+            // login to the server with credentials
+            pool.connect((error, client, done) => { 
+                
+                // run sql insert command and provide details - these are returned from the form sent from the client
+                client.query(sql, [email, passwordHash, dateCreated, username], (error, result) => { 
+                
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        client.end();
+                        res.redirect('/thanks');
+                        done();
+                    }
+                });    
+            });
+            
+
+        }
+
+    }));
+    
+// here
+
+
+
+    
+});
+
+// login post
+
+app.post("/login", (req, res) => {
+
+    // try to login the user
+
+    var sql = '';
+    sql = sql + 'SELECT * FROM public."user" ';
+    sql = sql + 'WHERE email = $1';
+
+    // instruction for the database to run
+    // get details from the form based on the names of the included fields 
+    
+    var email = req.body.email || '';
+    var password = req.body.passwd || '';
+
+    var passwordHash = bcrypt.hashSync(password, 10);
+    console.log("The hash is " + passwordHash);
     // call database
     
     pool.connect((error, client, done) => { 
         // login to the server with credentials
 
-        client.query(sql, [email, passwordHash, dateCreated, username], (error, result) => { 
+        client.query(sql, [email], (error, result) => { 
         // run sql insert command and provide details - these are returned from the form sent from the client
             
             if (error) {
                 
                 console.log(error);
             } else {
-                
-                client.end();
-                res.redirect('/thanks');
-                done();
+
+                if (result.rows.length == 0) {
+                    res.redirect('/login?msg=invalid');        
+                    client.end();
+                    done();
+                    return false;    
+
+                } else {
+
+                    bcrypt.compare(password, result.rows[0].passwordHash, (err, result) => {
+
+                        if (result) {
+                            // password valid
+
+                            res.redirect('/login?msg=valid');        
+                            client.end();
+                            done();
+                            return true;
+
+                        } else {
+                            // password invalid
+                            res.redirect('/login?msg=invalid');        
+                            client.end();
+                            done();
+                            return false;
+                        }
+                    });
+                }
             }
             
             
         });    
-        
-        
-        
+   
     });
     
 });
+
 
 app.listen(8081, () => {
     
