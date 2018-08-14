@@ -56,19 +56,21 @@ nav {background-color: #000; }
     
     list-style: none;
     float: right;
-    margin-top: 13px;
+    transform: translate(0, 50%);
 }
 
 .main-nav li {
     
     float: left;
     margin: 0 50px;
+    
 }
 
 .main-nav li a {
     
     font-size: 90%;
     color: #fff;
+    
 }
 
 /* -------- Mobile Navigation -------- */
@@ -111,6 +113,7 @@ nav {background-color: #000; }
     
     float: left;
     margin-right: 20px;
+    transform: translate(0, 50%);
 
 }
 
@@ -147,7 +150,7 @@ input[type=submit]:hover {
 h2 {
     
     font-weight: 600;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     margin-left: 50%;
     transform: translate(-50%);
     display: inline-block;

@@ -1,6 +1,6 @@
 @media only screen and (min-width: 1140px) {
     
-    .mobile-nav, .hamburger-menu {display: none; }
+    .hamburger-menu {display: none; }
     
 }
 
@@ -23,13 +23,29 @@
 
 }
 
+@media only screen and (max-width: 864px) and (min-width: 768px) {
+    .main-nav li {
+
+        margin: 0 30px;
+        font-size: 80%;
+
+    }
+
+    .main-nav {
+
+        transform: translate(0, 75%);
+    }
+
+}
+
 @media only screen and (max-width: 768px) {
     
     .row {
         width: 100%;
         padding: 15px 0;
-    
     }
+
+    
 
     /* -------- HW exchange logo at the top of the page -------- */
 
@@ -103,6 +119,9 @@
         margin-right: 30px;
     }
 
+    /* -------- Mobile look for register menu -------- */
+
+
     .hamburger-menu:hover {transform: scale(1.15); }
     
     /* -------- containers for item displays -------- */
@@ -117,6 +136,15 @@
     .img-box img {
         width: 80%;
         margin-left: 10%; 
+    }
+
+}
+
+@media only screen and (max-width: 648px) {
+
+    .input-box p {
+        float: none;
+        margin-bottom: 15px;
     }
 
 }

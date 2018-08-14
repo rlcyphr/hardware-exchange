@@ -50,17 +50,14 @@ a {text-decoration: none; }
 
 
 
-nav .row {
-    padding-top: 15px;
-    background-color: #000;
-
-}
+nav {background-color: #000; }
 
 
 .main-nav {
     
     list-style: none;
     float: right;
+    transform: translate(0, 50%);
     
 }
 
@@ -119,7 +116,8 @@ nav .row {
 .input-box p {
     
     float: left;
-    margin-right: 20px;
+    margin-right: 25px;
+    transform: translate(0, 50%);
 
 }
 
@@ -142,8 +140,6 @@ input[type=submit]:hover {
     background-color: #b96115;
 }
 
-
-
 .center-box {
 
     margin-left: 50%;
@@ -156,9 +152,10 @@ input[type=submit]:hover {
 h2 {
     
     font-weight: 600;
-    margin-bottom: 40px;
+    font-size: 165%;    
     margin-left: 50%;
     transform: translate(-50%);
+    margin-bottom: 60px;
     display: inline-block;
 
 }
