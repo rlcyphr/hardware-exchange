@@ -20,6 +20,10 @@ const config = {
 var pool = new pg.Pool(config); // creating a connection
 const path = require('path');
 
+const validator = require("emailValidator");
+
+// -------- Start web server and get web pages, as well as set renderer
+
 var app = express(); // start the web server
 app.engine('handlebars', expressHandlebars()); // set express to use handlebars renderer
 app.set('view engine', 'handlebars'); // set view engine to handlebars
@@ -30,14 +34,24 @@ app.use(body_parser.urlencoded( {extended:true} )); // tell express server to us
                                                      // lets it grab contents of posted form fields
 app.use('/', express.static(path.join(process.cwd(), 'public'))) // set static assets directory to /public for handlebars renderer
 
+
+// +++++++++++++++++++++++++++++++
 // -------- website calls --------
+// +++++++++++++++++++++++++++++++
+
 
 app.get('/', (req, res) => {res.render('index')} ); // get website page from webpage root (/views) and render them 
 app.get('/register', (req, res) => {res.render('register')} );
 app.get('/thanks', (req, res) => {res.render('thanks')} );
 app.get('/login', (req, res) => {res.render('login')} );
 
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// validate email on server side
+// ++++++++++++++++++++++++++++++++++++++++++++++
+
+// +++++++++++++++++++++++++++
 // -------- api calls --------
+// +++++++++++++++++++++++++++
 
 app.get("/componenttypes", (req, res) => { 
     // use web server to get and push to path /componenttypes
@@ -71,7 +85,11 @@ app.get("/componenttypes", (req, res) => {
     
 });
 
+
+// ++++++++++++++++++++++++++++++++++++++++++++++
 // -------- check for email duplications --------
+// ++++++++++++++++++++++++++++++++++++++++++++++
+
 
 function emailExists(email, callback) {
     // build sql command
@@ -109,7 +127,11 @@ function emailExists(email, callback) {
 
 }
 
+
+// +++++++++++++++++++++++++++++++++++
 // -------- register new user --------
+// +++++++++++++++++++++++++++++++++++
+
 
 app.post("/register", (req, res) => {
 
@@ -171,7 +193,11 @@ app.post("/register", (req, res) => {
     
 });
 
+
+// ++++++++++
 // login post
+// ++++++++++
+
 
 app.post("/login", (req, res) => {
 

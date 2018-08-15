@@ -62,13 +62,17 @@ nav {background-color: #000; }
 .main-nav li {
     
     float: left;
-    margin: 0 50px;
+    margin: 0 60px;
     
+}
+
+.main-nav li:last-of-type {
+    margin-right: 0;
 }
 
 .main-nav li a {
     
-    font-size: 90%;
+    font-size: 105%;
     color: #fff;
     
 }

@@ -49,22 +49,20 @@ a {text-decoration: none; }
 /* -------- Navigation -------- */
 
 
-
 nav {background-color: #000; }
-
 
 .main-nav {
     
     list-style: none;
     float: right;
     transform: translate(0, 50%);
-    
 }
 
 .main-nav li {
     
-    float: right;
-    margin: 0 40px;
+    float: left;
+    margin: 0 60px;
+    
 }
 
 .main-nav li:last-of-type {
@@ -73,8 +71,9 @@ nav {background-color: #000; }
 
 .main-nav li a {
     
-    font-size: 110%;
+    font-size: 105%;
     color: #fff;
+    
 }
 
 
