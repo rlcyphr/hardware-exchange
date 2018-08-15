@@ -19,8 +19,8 @@ const config = {
 
 var pool = new pg.Pool(config); // creating a connection
 const path = require('path');
+const validator = require('email-validator');
 
-const validator = require("emailValidator");
 
 // -------- Start web server and get web pages, as well as set renderer
 
@@ -45,27 +45,27 @@ app.get('/register', (req, res) => {res.render('register')} );
 app.get('/thanks', (req, res) => {res.render('thanks')} );
 app.get('/login', (req, res) => {res.render('login')} );
 
-// ++++++++++++++++++++++++++++++++++++++++++++++
-// validate email on server side
-// ++++++++++++++++++++++++++++++++++++++++++++++
-
 // +++++++++++++++++++++++++++
 // -------- api calls --------
 // +++++++++++++++++++++++++++
 
+
+// use web server to get and push to path /componenttypes
 app.get("/componenttypes", (req, res) => { 
-    // use web server to get and push to path /componenttypes
     
-    var sql = 'select * from public."componentType";'; 
+    
     // instruction for the database to run
+    var sql = 'select * from public."componentType";'; 
+    
     
     // call database
     
+    // login to the server with credentials
     pool.connect((error, client, done) => { 
-        // login to the server with credentials
         
-        client.query(sql, (error, result) => { 
         // use logged in client to retrieve the results of the database
+        client.query(sql, (error, result) => { 
+        
             
             if (error) {
                 
@@ -86,10 +86,9 @@ app.get("/componenttypes", (req, res) => {
 });
 
 
-// ++++++++++++++++++++++++++++++++++++++++++++++
-// -------- check for email duplications --------
-// ++++++++++++++++++++++++++++++++++++++++++++++
-
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// -------- check for issues with submitted emails --------
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function emailExists(email, callback) {
     // build sql command
@@ -139,8 +138,18 @@ app.post("/register", (req, res) => {
     var password = req.body.passwd || '';
     var dateCreated = Date.now();
     var username = req.body.username || '';
-
     var passwordHash = bcrypt.hashSync(password, 10);
+
+
+    //verify email
+
+    if (!validator.validate(email)) {
+
+        res.redirect('/register?msg=bad-email');
+        return false;
+
+    }
+
 
     // -------- check for email dupes --------
 
@@ -148,7 +157,7 @@ app.post("/register", (req, res) => {
 
         if (exists) {
 
-            res.redirect('login?msg=dupe-email');
+            res.redirect('/register?msg=dupe-email');
 
         } else {
 

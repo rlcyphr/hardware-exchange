@@ -68,6 +68,36 @@
     
     
     </section>
+
+    <script>
+
+        function gup(name) {
+            name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+            var regexS = "[\\?&]"+name+"=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+            if (results == null) {
+                return '';
+            } else {
+                return results[1];
+            }
+        } 
+        
+        // -------- gup() - Get URL Param --------
+
+        var msg = gup('msg');
+
+        switch (msg) {
+
+            case 'bad-email':
+                $('#msg').text('Please input a valid email address.');
+                break;
+            case 'dupe-email':
+                $('#msg').html('That email already exists - did you mean to <a href="/login">log in</a>?');
+                break;
+        }
+
+    </script>
     
 </body>
     
