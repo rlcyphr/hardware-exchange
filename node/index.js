@@ -141,7 +141,7 @@ app.post("/register", (req, res) => {
     var passwordHash = bcrypt.hashSync(password, 10);
 
 
-    //verify email
+    // -------- verify email - only necessary if user modifies code in console screen --------
 
     if (!validator.validate(email)) {
 
@@ -195,11 +195,7 @@ app.post("/register", (req, res) => {
 
     }));
     
-// here
 
-
-
-    
 });
 
 
@@ -210,13 +206,13 @@ app.post("/register", (req, res) => {
 
 app.post("/login", (req, res) => {
 
-    // try to login the user
+    // -------- instruction for the database to run --------
 
     var sql = '';
     sql = sql + 'SELECT * FROM public."user" ';
     sql = sql + 'WHERE email = $1';
 
-    // instruction for the database to run
+    
     // get details from the form based on the names of the included fields 
     
     var email = req.body.email || '';

@@ -29,7 +29,6 @@ a {text-decoration: none; }
     color: #fff;
 }
 
-
 .orange {color: #e07519; }
 
 .hamburger-menu {display: none; }
@@ -167,3 +166,12 @@ h2 {
 .hidden {display: none; }
 
 .nav-active {width: 100%; }
+
+.msg-text {
+
+    color: #930202;
+}
+
+.msg-link {
+    color: #e07519;
+}
