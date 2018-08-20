@@ -61,7 +61,7 @@ function parseCookies(request) {
 function requiresLogin(req, res, next) {
 
     let cookies = parseCookies(req);
-    
+
     try {
         console.log('test7');
         let email = decodeURIComponent(cookies.email);
@@ -85,14 +85,12 @@ function requiresLogin(req, res, next) {
                     if (result.rows.length > 0) {
                         console.log('test5');
                         // hashed cookie is valid (matched email in db) - login 
-                        client.end();
                         done();
                         return next();
 
                     } else {
                         console.log('test6');
                         // client's cookie is bad/missing
-                        client.end();
                         done();
                         res.redirect('/login?msg=bad-token');
                         
@@ -147,7 +145,6 @@ app.get("/componenttypes", (req, res) => {
                 console.log(error);
             } else {
                 
-                client.end();
                 done();
                 res.send(result);
                 
@@ -184,12 +181,10 @@ function emailExists(email, callback) {
             } else {
                 // if there is no matching email that has already been used, return false
                 if (result.rows.length == 0) {  
-                    client.end();
                     callback(false);    
 
                 } else {
 
-                    client.end();
                     callback(true);
                 }
             }
@@ -293,7 +288,7 @@ app.post("/register", (req, res) => {
                         console.log(error);
                     } else {
                         // end the client's connection with the server (and therefore the database)
-                        client.end();
+
                         // set a cookie that contains the hashed password and email of the user
 
                         /* for later
@@ -365,7 +360,6 @@ app.post("/login", (req, res) => {
 
                 if (result.rows.length == 0) {
                     res.redirect('/login?msg=invalid');        
-                    client.end();
                     done();
                     return false;    
 
@@ -399,7 +393,6 @@ app.post("/login", (req, res) => {
                                     res.cookie('hash', cookie);
                                     res.cookie('email', email);
                                     res.redirect('/account');        
-                                    client.end();
                                     done();
                                     return true;
                                 }
@@ -409,7 +402,6 @@ app.post("/login", (req, res) => {
                         } else {
                             // password invalid
                             res.redirect('/login?msg=invalid');        
-                            client.end();
                             done();
                             return false;
                         }
