@@ -120,3 +120,14 @@ nav {background-color: #000; }
 .hamburger-menu:hover {
     transform: scale(1.15);
 }
+
+/* -------- Classes for processing in JS -------- */
+
+
+.hidden {display: none; }
+
+.nav-active {width: 100%; }
+
+.msg-text { color: #930202;}
+
+.msg-link { color: #e07519;}

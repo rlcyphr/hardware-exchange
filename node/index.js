@@ -63,7 +63,6 @@ function requiresLogin(req, res, next) {
     let cookies = parseCookies(req);
 
     try {
-        console.log('test7');
         let email = decodeURIComponent(cookies.email);
         let hash = decodeURIComponent(cookies.hash);
         
@@ -71,9 +70,9 @@ function requiresLogin(req, res, next) {
         sql += 'SELECT * FROM public."user" ';
         sql += 'WHERE cookie = $1 ';
         sql += 'AND email = $2; ';
-        console.log('test3');
+
         pool.connect((error, client, done) => { 
-            console.log('test3.5');
+
             // use logged in client to retrieve the results of the database
             client.query(sql, [hash, email], (error, result) => { 
                 console.log('test4');
@@ -83,13 +82,11 @@ function requiresLogin(req, res, next) {
                 } else {
                     
                     if (result.rows.length > 0) {
-                        console.log('test5');
                         // hashed cookie is valid (matched email in db) - login 
                         done();
                         return next();
 
                     } else {
-                        console.log('test6');
                         // client's cookie is bad/missing
                         done();
                         res.redirect('/login?msg=bad-token');
@@ -104,7 +101,6 @@ function requiresLogin(req, res, next) {
 
     } catch(err) {
         // eat the error
-        console.log('test1');
         res.redirect('/login?msg=bad-token');
     }
     
