@@ -46,13 +46,79 @@ app.get('/', (req, res) => {
 
     res.render('index');
 
-
 }); 
+
+function parseCookies(request) {
+    var list = {},
+        rc = request.headers.cookie;
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+    return list;
+}
+
+function requiresLogin(req, res, next) {
+
+    let cookies = parseCookies(req);
+    
+    try {
+        console.log('test7');
+        let email = decodeURIComponent(cookies.email);
+        let hash = decodeURIComponent(cookies.hash);
+        
+        sql = '';
+        sql += 'SELECT * FROM public."user" ';
+        sql += 'WHERE cookie = $1 ';
+        sql += 'AND email = $2; ';
+        console.log('test3');
+        pool.connect((error, client, done) => { 
+            console.log('test3.5');
+            // use logged in client to retrieve the results of the database
+            client.query(sql, [hash, email], (error, result) => { 
+                console.log('test4');
+                if (error) {
+                    
+                    console.log(error);
+                } else {
+                    
+                    if (result.rows.length > 0) {
+                        console.log('test5');
+                        // hashed cookie is valid (matched email in db) - login 
+                        client.end();
+                        done();
+                        return next();
+
+                    } else {
+                        console.log('test6');
+                        // client's cookie is bad/missing
+                        client.end();
+                        done();
+                        res.redirect('/login?msg=bad-token');
+                        
+                    }
+
+                }
+                            
+            });
+            
+        });
+
+    } catch(err) {
+        // eat the error
+        console.log('test1');
+        res.redirect('/login?msg=bad-token');
+    }
+    
+    
+
+};
+
 // get website page from webpage root (/views) and render them 
 app.get('/register', (req, res) => {res.render('register'); });
 app.get('/thanks', (req, res) => {res.render('thanks'); });
 app.get('/login', (req, res) => {res.render('login'); });
-app.get('/account', (req, res) => {res.render('account'); });
+app.get('/account', requiresLogin, (req, res) => {res.render('account'); });
 
 // +++++++++++++++++++++++++++
 // -------- api calls --------
@@ -331,7 +397,7 @@ app.post("/login", (req, res) => {
                                     // set the cookie to send back to the user
 
                                     res.cookie('hash', cookie);
-                                    res.cookie('email',email);
+                                    res.cookie('email', email);
                                     res.redirect('/account');        
                                     client.end();
                                     done();

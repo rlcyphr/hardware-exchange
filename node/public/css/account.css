@@ -1,0 +1,122 @@
+/* -------- Setup -------- */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+a {text-decoration: none; }
+
+
+/* -------- Logo & Headers -------- */
+
+
+#page-header-text {display: inline-block; }
+
+#page-header-text a {
+    font-family: 'Varela Round', sans-serif;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    font-size: 200%;
+    font-weight: 600;
+    color: #fff;
+}
+
+
+.orange {color: #e07519; }
+
+.hamburger-menu {display: none; }
+
+h1 {
+    font-size: 240%;
+    transform: translate(0, 50%);
+    float: right;
+}
+
+
+.header-box {
+    display: inline-block;
+    transform: translate(-60%, 0);
+    margin-left: 50%;
+    margin-top: 10%;
+}
+
+
+/* -------- Reusable units -------- */
+
+
+.row {
+    
+    width: 1140px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.icon-box {
+    float: left;
+    margin: 25px;
+}
+
+
+.icon-box img {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 75%;
+
+}
+
+
+/* -------- Navigation -------- */
+
+
+nav {background-color: #000; }
+
+.main-nav {
+    
+    list-style: none;
+    float: right;
+    transform: translate(0, 50%);
+}
+
+.main-nav li {
+    
+    float: left;
+    margin: 0 60px;
+    
+}
+
+.main-nav li:last-of-type {
+    margin-right: 0;
+}
+
+.main-nav li a {
+    
+    font-size: 105%;
+    color: #fff;
+    
+}
+
+
+/* -------- Mobile Navigation -------- */
+
+.hamburger-menu {
+    width: 40px;
+    height: auto;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.15);
+}
