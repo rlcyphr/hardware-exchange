@@ -24,6 +24,9 @@
 }
 
 @media only screen and (max-width: 864px) and (min-width: 768px) {
+    
+    /* -------- navbar on smaller screens, but larger than those that use the mobile view -------- */
+    
     .main-nav li {
 
         margin: 0 30px;
@@ -49,11 +52,13 @@
 
     /* -------- HW exchange logo at the top of the page -------- */
 
+
+
     #page-header-text {margin-left: 30px; }
 
     #page-header-text a {font-size: 150%; }
 
-    
+
     /* -------- Mobile navigation - text formatting --------  */
     
     
@@ -138,7 +143,24 @@
         margin-left: 10%; 
     }
 
+    .icon-box {
+        float: none;
+        margin-left: 50%;
+        transform: translate(-25%, 0);
+    }
+
+    /* Header for account page */
+    h1 {
+        font-size: 180%;
+        transform: translate(0, 0);
+        float: right;
+    }
+    
+
+
+
 }
+
 
 @media only screen and (max-width: 648px) {
 
@@ -146,6 +168,8 @@
         float: none;
         margin-bottom: 15px;
     }
+
+
 
 }
 

@@ -36,17 +36,10 @@ app.use(body_parser.urlencoded( {extended:true} )); // tell express server to us
 app.use('/', express.static(path.join(process.cwd(), 'public'))) // set static assets directory to /public for handlebars renderer
 app.use(cookie_parser());
 
+// ++++++++++++++++++++++++++++++++++++++++
+// -------- verification functions --------
+// ++++++++++++++++++++++++++++++++++++++++
 
-// +++++++++++++++++++++++++++++++
-// -------- website calls --------
-// +++++++++++++++++++++++++++++++
-
-
-app.get('/', (req, res) => {
-
-    res.render('index');
-
-}); 
 
 function parseCookies(request) {
     var list = {},
@@ -57,6 +50,8 @@ function parseCookies(request) {
     });
     return list;
 }
+
+// for pages that require login to access, check the value of the cookie
 
 function requiresLogin(req, res, next) {
 
@@ -69,18 +64,18 @@ function requiresLogin(req, res, next) {
         sql = '';
         sql += 'SELECT * FROM public."user" ';
         sql += 'WHERE cookie = $1 ';
-        sql += 'AND email = $2; ';
+        sql += 'AND email = $2 ';
 
         pool.connect((error, client, done) => { 
 
             // use logged in client to retrieve the results of the database
             client.query(sql, [hash, email], (error, result) => { 
-                console.log('test4');
+
                 if (error) {
                     
                     console.log(error);
                 } else {
-                    
+                    // result is returned as an array
                     if (result.rows.length > 0) {
                         // hashed cookie is valid (matched email in db) - login 
                         done();
@@ -104,11 +99,85 @@ function requiresLogin(req, res, next) {
         res.redirect('/login?msg=bad-token');
     }
     
-    
-
 };
 
-// get website page from webpage root (/views) and render them 
+// get info like username 
+
+function getUserInfo(hash, callback) {
+
+    sql = '';
+    sql += 'SELECT * FROM public."user" ';
+    sql += 'WHERE cookie = $1';
+
+    pool.connect((error, client, done) => {
+
+        client.query(sql, [hash], (error, result) => {
+
+            if (error) {
+
+                console.log(error);
+            } else {
+
+                callback(result.rows[0].username);
+                done();
+
+            }
+
+        });
+
+    });
+
+}
+
+// -------- check for issues with submitted emails --------
+
+function emailExists(email, callback) {
+    // build sql command
+    var sql = '';
+    sql = sql + 'SELECT * FROM public."user" ';
+    sql = sql + 'WHERE email = $1';
+
+    // login to the server with credentials
+    pool.connect((error, client, done) => { 
+        
+        // run sql insert command and provide details - these are returned from the form sent from the client
+        client.query(sql, [email], (error, result) => { 
+        
+            if (error) {         
+
+                console.log(error);
+
+            } else {
+                // if there is no matching email that has already been used, return false
+                if (result.rows.length == 0) {  
+                    callback(false);    
+
+                } else {
+
+                    callback(true);
+                }
+            }
+            
+            
+        });    
+   
+    });
+
+}
+
+// generate cookie for browser
+
+function genCookie(email, password) {
+
+    let data = bcrypt.hashSync((email + password), 10);
+    return data;
+}
+
+// +++++++++++++++++++++++++++++++
+// -------- website calls --------
+// +++++++++++++++++++++++++++++++
+
+app.get('/', (req, res) => {res.render('index'); }); 
 app.get('/register', (req, res) => {res.render('register'); });
 app.get('/thanks', (req, res) => {res.render('thanks'); });
 app.get('/login', (req, res) => {res.render('login'); });
@@ -154,56 +223,6 @@ app.get("/componenttypes", (req, res) => {
 });
 
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// -------- check for issues with submitted emails --------
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-function emailExists(email, callback) {
-    // build sql command
-    var sql = '';
-    sql = sql + 'SELECT * FROM public."user" ';
-    sql = sql + 'WHERE email = $1';
-
-    // login to the server with credentials
-    pool.connect((error, client, done) => { 
-        
-        // run sql insert command and provide details - these are returned from the form sent from the client
-        client.query(sql, [email], (error, result) => { 
-        
-            if (error) {         
-
-                console.log(error);
-
-            } else {
-                // if there is no matching email that has already been used, return false
-                if (result.rows.length == 0) {  
-                    callback(false);    
-
-                } else {
-
-                    callback(true);
-                }
-            }
-            
-            
-        });    
-   
-    });
-
-}
-
-
-// +++++++++++++++++++++++++++++++++++++++++++++++
-// -------- create cookie for the browser --------
-// +++++++++++++++++++++++++++++++++++++++++++++++
-
-function genCookie(email, password) {
-
-    let data = bcrypt.hashSync((email + password), 10);
-    return data;
-}
-
-
 // +++++++++++++++++++++++++++++++++++
 // -------- register new user --------
 // +++++++++++++++++++++++++++++++++++
@@ -219,23 +238,6 @@ app.post("/register", (req, res) => {
 
     let cookie = genCookie(email, password);
 
-    // -------- generate cookie for user on signup --------
-
-    /* generate cookie value
-
-    let cookieValue = bcrypt.hashSync(genCookie(email, password), 10);
-
-    console.log(cookieValue);
-
-    set the cookie to use the name 'hash' and value generated beforehand
-
-    let cookie = setCookie('hash', cookieValue, 1);
-
-    log the newly created cookie to the console - BROKEN CURRENTLY
-
-    console.log(cookie);
-
-    */
 
     // -------- verify email - only necessary if user modifies code in console screen --------
 
@@ -244,9 +246,6 @@ app.post("/register", (req, res) => {
         res.redirect('/register?msg=bad-email');
 
     }
-
-    
-
 
     // -------- check for email dupes --------
 
@@ -283,22 +282,17 @@ app.post("/register", (req, res) => {
                     if (error) {
                         console.log(error);
                     } else {
-                        // end the client's connection with the server (and therefore the database)
 
-                        // set a cookie that contains the hashed password and email of the user
-
-                        /* for later
-
-                        let date = new Date();
-                        date.setTime(date.getTime() + (24*60*60*1000));
-
-                        let expiryDate = date.toUTCString();
-                        */
+                        // set a cookie that contains the hashed password and email of the user, the email address, and the username for privileged
+                        // pages, such as the account page, to use in order to show the personalised page to the logged in user
+                        // the username cookie could be changed if the user decides to change their username later
 
                         res.cookie('hash', cookie);
                         res.cookie('email',email);
+                        res.cookie('username',username);
                         
-                        // redirect the user to the thanks page after a successful regsitration
+                        // redirect the user to the thanks page after a successful registration
+
                         res.redirect('/thanks');
                         done();
                     }
@@ -315,7 +309,6 @@ app.post("/register", (req, res) => {
 
 });
 
-
 // ++++++++++
 // login post
 // ++++++++++
@@ -328,20 +321,27 @@ app.post("/login", (req, res) => {
     
     var sql = '';
     sql = sql + 'SELECT * FROM public."user" ';
-    sql = sql + 'WHERE email = $1';
+    sql = sql + 'WHERE email = $1; ';
+
 
     
     // get details from the form based on the names of the included fields 
     
     var email = req.body.email || '';
     var password = req.body.passwd || '';
+    
+    
 
     let cookie = genCookie(email, password);
 
     var passwordHash = bcrypt.hashSync(password, 10);
     console.log("The hash is " + passwordHash);
+
+
     // call database
     
+
+
     pool.connect((error, client, done) => { 
         // login to the server with credentials
 
@@ -354,27 +354,36 @@ app.post("/login", (req, res) => {
 
             } else {
 
+                // the email that the user entered is not valid
+
                 if (result.rows.length == 0) {
-                    res.redirect('/login?msg=invalid');        
+                    res.redirect('/login?msg=invalid-email');        
                     done();
                     return false;    
 
+
+                // user's email is valid
+
                 } else {
+
+                    // compare the password entered by the user with the password hash that is stored in the 
+                    // database entry that also includes their email address
 
                     bcrypt.compare(password, result.rows[0].passwordHash, (err, result) => {
 
+                        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        // password matches the email given - write a new cookie hash to the user in the database
+                        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
                         if (result) {
-                            // password valid
-
-                            // write a new cookie hash to the user in the database
-
 
                             sql = '';
                             sql = sql + 'UPDATE public."user" SET ';
-                            sql = sql + 'cookie=$1 ';
+                            sql = sql + 'cookie = $1 ';
                             sql += 'WHERE email = ($2)';
 
                             // update the cookie 
+
                             client.query(sql, [cookie, email], (error, result) => { 
 
                                 if (error) {
@@ -395,8 +404,12 @@ app.post("/login", (req, res) => {
 
                             });
 
+                        // ++++++++++++++++
+                        // password invalid
+                        // ++++++++++++++++
+
                         } else {
-                            // password invalid
+                            
                             res.redirect('/login?msg=invalid');        
                             done();
                             return false;
@@ -410,8 +423,12 @@ app.post("/login", (req, res) => {
         });    
    
     });
+
+
     
 });
+
+
 
 
 app.listen(8081, () => {
