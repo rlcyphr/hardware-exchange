@@ -41,7 +41,9 @@
         <div class="row">
             <div class="header-box">
                 <div class="icon-box"><img src="img/placeholders/download.jpeg"></div>
-                <h1>account name</h1>
+                <h1 id="accountName">account name</h1>
+                <div>Email: <span id="email"></span></div>
+                <div>Account Created: <span id="date-created"></span></div>
             </div>
         </div>
 
@@ -65,6 +67,15 @@
 
     var email = getCookie('email');
     $('#email').html(decodeURIComponent(email));
+
+    // GET /userinfo
+
+    $.get( "/userinfo", (data) => {
+        $("#accountName").html("Welcome, " + data.rows[0].username);
+        $('#email').html(data.rows[0].email);
+        var d = new Date(parseInt(data.rows[0].dateCreated));
+        $('#date-created').text(d);
+    });
 
 </script>
 

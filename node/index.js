@@ -38,7 +38,7 @@ app.use(cookie_parser());
 
 // ++++++++++++++++++++++++++++++++++++++++
 // -------- verification functions --------
-// ++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++ 
 
 
 function parseCookies(request) {
@@ -101,7 +101,7 @@ function requiresLogin(req, res, next) {
     
 };
 
-// get info like username 
+/* get info like username 
 
 function getUserInfo(hash, callback) {
 
@@ -128,6 +128,8 @@ function getUserInfo(hash, callback) {
     });
 
 }
+
+*/
 
 // -------- check for issues with submitted emails --------
 
@@ -222,6 +224,61 @@ app.get("/componenttypes", (req, res) => {
     
 });
 
+// get the user's data from the server
+
+app.get("/userinfo", (req, res) => {
+
+    console.log("I'm here!");
+    // what to do here: db call to get the username based on the cookie in the browser
+    // use the result to display the user's name on the account page (and perhaps the username as well)
+    // also need to create sql command for the server to use
+
+    let cookies = parseCookies(req);
+
+    // get the hash from browser
+    let hash = decodeURIComponent(cookies.hash);
+    console.log("hash = " + hash);
+
+    // build the sql command
+
+    var sql = '';
+    sql += 'SELECT * FROM public."user" ';
+    sql += 'WHERE cookie = $1; ';
+
+
+    pool.connect((error, client, done) => {
+
+        client.query(sql, [hash], (error, result) => {
+
+            if (error) {
+                console.log(error);
+            } else {
+                if (result.rows.length == 0) {
+                // the cookie provided does not match any user
+
+                    res.json({});
+
+                    
+                } else {
+
+                    // user was found - send back the user's details as a JSON string
+                    res.json(result);
+
+                }
+            }
+
+
+
+
+        });
+
+
+
+    });
+
+
+
+});
 
 // +++++++++++++++++++++++++++++++++++
 // -------- register new user --------
@@ -395,6 +452,7 @@ app.post("/login", (req, res) => {
                                     // login ok, hash updated, send back to user
                                     // set the cookie to send back to the user
 
+                                    console.log("Setting the cookie to: " + cookie);
                                     res.cookie('hash', cookie);
                                     res.cookie('email', email);
                                     res.redirect('/account');        
