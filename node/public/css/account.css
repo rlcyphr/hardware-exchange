@@ -121,6 +121,25 @@ nav {background-color: #000; }
     transform: scale(1.15);
 }
 
+/* -------- Information for users' personal pages -------- */
+
+
+.box {
+    color: #bfbfbf;
+    font-size: 120%;
+    display: inline-block;
+}
+
+.info-box {
+    margin: 50px;
+}
+
+.box span {display: block; }
+
+.info-box div:last-of-type {
+    float: right;
+}
+
 /* -------- Classes for processing in JS -------- */
 
 

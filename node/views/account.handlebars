@@ -38,13 +38,19 @@
     </header>
 
     <section id="account-details">
+
         <div class="row">
+
             <div class="header-box">
                 <div class="icon-box"><img src="img/placeholders/download.jpeg"></div>
-                <h1 id="accountName">account name</h1>
-                <div>Email: <span id="email"></span></div>
-                <div>Account Created: <span id="date-created"></span></div>
+                <h1 id="accountName"></h1>
             </div>
+
+            <div class="row info-box">    
+                <div class="box">Email: <span id="email"></span></div>
+                <div class="box">Account Created: <span id="date-created"></span></div>    
+            </div>
+
         </div>
 
 
@@ -73,7 +79,7 @@
     $.get( "/userinfo", (data) => {
         $("#accountName").html("Welcome, " + data.rows[0].username);
         $('#email').html(data.rows[0].email);
-        var d = new Date(parseInt(data.rows[0].dateCreated));
+        var d = new Date(parseInt(data.rows[0].dateCreated)).toUTCString();
         $('#date-created').text(d);
     });
 

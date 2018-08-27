@@ -149,6 +149,10 @@
         transform: translate(-25%, 0);
     }
 
+    .box {font-size: 90%; }
+
+
+
     /* Header for account page */
     h1 {
         font-size: 180%;
@@ -167,6 +171,16 @@
     .input-box p {
         float: none;
         margin-bottom: 15px;
+    }
+
+    .box {
+        float: none;
+        display: block;
+    }
+
+    .info-box div:last-of-type {
+        float: none;
+        margin-top: 25px;
     }
 
 

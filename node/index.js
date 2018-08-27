@@ -253,14 +253,12 @@ app.get("/userinfo", (req, res) => {
             if (error) {
                 console.log(error);
             } else {
+                
                 if (result.rows.length == 0) {
                 // the cookie provided does not match any user
-
                     res.json({});
 
-                    
                 } else {
-
                     // user was found - send back the user's details as a JSON string
                     res.json(result);
 
