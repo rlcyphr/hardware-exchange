@@ -1,90 +1,96 @@
 <!DOCTYPE html>
 
-<head>
+<html>
+    
+    <head>
 
-    <title>Hardware Exchange</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="../css/account.css" rel="stylesheet" type="text/css">
-    <link href="../css/queries.css" rel="stylesheet" type="text/css">
-    
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/script.js"></script>
-    
-</head>
-
-<body>
-
-    <header>
+        <title>Hardware Exchange</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <nav>
+        <link href="../css/account.css" rel="stylesheet" type="text/css">
+        <link href="../css/queries.css" rel="stylesheet" type="text/css">
+        
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/script.js"></script>
+        
+    </head>
+
+    <body>
+
+        <header>
             
-            <div class="row">
+            <nav>
                 
-                <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
-                <ul class="main-nav">
-                    <li><a href="/login">Log in</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li><div class="hamburger-menu"></div></li>
-                </ul>   
- 
+                <div class="row">
+                    
+                    <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
+                    <ul class="main-nav">
+                        <li><a href="/login">Log in</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><div class="hamburger-menu"></div></li>
+                    </ul>   
+    
+                </div>
+
+            </nav>
+            
+        </header>
+
+        <section id="account-details">
+
+            <div class="row">
+
+                <div class="header-box">
+                    <div class="icon-box"><img src="img/placeholders/download.jpeg"></div>
+                    <h1 id="accountName"></h1>
+                </div>
+
+                <div class="info-box">
+                    <div>Email: <span id="email"></span></div>
+                    <div>Account Created: <span id="date-created"></span></div>
+                </div>
+
+                <div class="row">
+                    <div class="btn-holder"><button id="btn-add-item">Add item</button></div>
+                </div>
+
             </div>
 
-        </nav>
-        
-    </header>
+            
 
-    <section id="account-details">
-
-        <div class="row">
-
-            <div class="header-box">
-                <div class="icon-box"><img src="img/placeholders/download.jpeg"></div>
-                <h1 id="accountName"></h1>
-            </div>
-
-            <div class="row info-box">    
-                <div class="box">Email: <span id="email"></span></div>
-                <div class="box">Account Created: <span id="date-created"></span></div>    
-            </div>
-
-        </div>
-
-
-
-    </section>
+        </section>
 
 
 
 
 
-<script>
+    <script>
 
-    // grab email from cookie and show on page
+        // grab email from cookie and show on page
 
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-    }
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
 
-    var email = getCookie('email');
-    $('#email').html(decodeURIComponent(email));
+        var email = getCookie('email');
+        $('#email').html(decodeURIComponent(email));
 
-    // GET /userinfo
+        // GET /userinfo
 
-    $.get( "/userinfo", (data) => {
-        $("#accountName").html("Welcome, " + data.rows[0].username);
-        $('#email').html(data.rows[0].email);
-        var d = new Date(parseInt(data.rows[0].dateCreated)).toUTCString();
-        $('#date-created').text(d);
-    });
+        $.get( "/userinfo", (data) => {
+            $("#accountName").html("Welcome, " + data.rows[0].username + "!");
+            $('#email').html(data.rows[0].email);
+            var d = new Date(parseInt(data.rows[0].dateCreated)).toUTCString();
+            $('#date-created').text(d);
+        });
 
-</script>
+    </script>
 
-</body>
+    </body>
 
 </html>

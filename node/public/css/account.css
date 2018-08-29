@@ -43,7 +43,7 @@ h1 {
 
 .header-box {
     display: inline-block;
-    transform: translate(-60%, 0);
+    transform: translate(-65%, 0); 
     margin-left: 50%;
     margin-top: 10%;
 }
@@ -72,6 +72,7 @@ h1 {
     border-radius: 75%;
 
 }
+
 
 
 /* -------- Navigation -------- */
@@ -123,21 +124,48 @@ nav {background-color: #000; }
 
 /* -------- Information for users' personal pages -------- */
 
+.info-box {
+    clear: both; 
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 80px;
+}
 
-.box {
+
+.info-box div {
     color: #bfbfbf;
-    font-size: 120%;
+    font-size: 90%;
     display: inline-block;
 }
 
-.info-box {
-    margin: 50px;
-}
-
-.box span {display: block; }
+.info-box div span {display: block; }
 
 .info-box div:last-of-type {
     float: right;
+
+}
+
+/* -------- Call to action button -------- */
+
+.btn-holder {
+    margin-left: 50%;
+    transform: translate(-20%, 0);
+    margin-top: 120px;
+}
+
+#btn-add-item {
+    padding: 20px 25px;
+    font-size: 110%;
+    background-color: #e07519;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+#btn-add-item:hover {
+    transform: scale(1.1);
 }
 
 /* -------- Classes for processing in JS -------- */
