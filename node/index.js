@@ -101,36 +101,6 @@ function requiresLogin(req, res, next) {
     
 };
 
-/* get info like username 
-
-function getUserInfo(hash, callback) {
-
-    sql = '';
-    sql += 'SELECT * FROM public."user" ';
-    sql += 'WHERE cookie = $1';
-
-    pool.connect((error, client, done) => {
-
-        client.query(sql, [hash], (error, result) => {
-
-            if (error) {
-
-                console.log(error);
-            } else {
-
-                callback(result.rows[0].username);
-                done();
-
-            }
-
-        });
-
-    });
-
-}
-
-*/
-
 // -------- check for issues with submitted emails --------
 
 function emailExists(email, callback) {
@@ -184,6 +154,7 @@ app.get('/register', (req, res) => {res.render('register'); });
 app.get('/thanks', (req, res) => {res.render('thanks'); });
 app.get('/login', (req, res) => {res.render('login'); });
 app.get('/account', requiresLogin, (req, res) => {res.render('account'); });
+app.get('/addItem', requiresLogin, (req, res) => {res.render('addItem'); });
 
 // +++++++++++++++++++++++++++
 // -------- api calls --------

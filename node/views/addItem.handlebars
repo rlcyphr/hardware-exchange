@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+
+        <title>Hardware Exchange</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="../css/addItem.css" rel="stylesheet" type="text/css">
+        <link href="../css/queries.css" rel="stylesheet" type="text/css">
+        
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/script.js"></script>
+        
+    </head>
+
+    <body>
+
+        <header>
+            
+            <nav>
+                
+                <div class="row">
+                    
+                    <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
+                    <ul class="main-nav">
+                        <li><a href="/login">Log in</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><div class="hamburger-menu"></div></li>
+                    </ul>   
+    
+                </div>
+
+            </nav>
+            
+        </header>
+
+
+        <div class="center-box">
+
+            <form method="post" action="/addItem">
+                
+                <div class="input-box">
+                    <p>Title:</p>                   
+                    <input type="text" name="title" required>
+                </div>
+
+                <div class="input-box">
+                    <p>Description:</p>                    
+                    <textarea rows="12" cols="60" placeholder="Add a description..."></textarea>
+                </div>
+
+                <div class="input-box">
+                    <p>Item type:</p>
+                    <select>
+                        <option value="cpu">CPU</option>
+                        <option value="gpu">Graphics Card</option>
+                        <option value="ram">RAM</option>
+                        <option value="case">Case</option>
+                    </select>
+                </div>
+
+                <div id="msg"></div>
+
+                <div>
+                    <input class="sub-btn" type="submit" value="Add item">
+                </div>
+
+            </form>
+
+        </div>
+        
+
+
+
+    </body>
+
+</html>

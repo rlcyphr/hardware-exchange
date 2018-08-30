@@ -16,7 +16,7 @@ body {
 a {text-decoration: none; }
 
 
-/* -------- Logo & Headers -------- */
+/* -------- Logo -------- */
 
 
 #page-header-text {display: inline-block; }
@@ -34,20 +34,6 @@ a {text-decoration: none; }
 
 .hamburger-menu {display: none; }
 
-h1 {
-    font-size: 240%;
-    transform: translate(0, 50%);
-    float: right;
-}
-
-
-.header-box {
-    display: inline-block;
-    transform: translate(-65%, 0); 
-    margin-left: 50%;
-    margin-top: 10%;
-}
-
 
 /* -------- Reusable units -------- */
 
@@ -59,19 +45,6 @@ h1 {
     padding: 15px;
 }
 
-.icon-box {
-    float: left;
-    margin: 25px;
-}
-
-
-.icon-box img {
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    border-radius: 75%;
-
-}
 
 
 
@@ -108,6 +81,7 @@ nav {background-color: #000; }
 
 /* -------- Mobile Navigation -------- */
 
+
 .hamburger-menu {
     width: 40px;
     height: auto;
@@ -122,39 +96,32 @@ nav {background-color: #000; }
     transform: scale(1.15);
 }
 
-/* -------- Information for users' personal pages -------- */
 
-.info-box {
-    clear: both; 
-    width: 70%;
+/* -------- Item submit form -------- */
+
+.center-box {
+
     margin-left: 15%;
-    margin-top: 80px;
-}
-
-
-.info-box div {
-    color: #bfbfbf;
-    font-size: 90%;
+    margin-top: 5%;
+    transform: translate(-50%);
     display: inline-block;
 }
 
-.info-box div span {display: block; }
-
-.info-box div:last-of-type {
-    float: right;
-
+.input-box {
+    margin-bottom: 40px;
 }
 
-/* -------- Call to action button -------- */
+.input-box p {
+    margin-bottom: 5px;
+    color: #777;
+}
 
-.btn-holder {
-    margin-left: 50%;
-    transform: translate(-20%, 0);
-    margin-top: 120px;
+input[type='text'], select {
+    width: 100%;
 }
 
 .sub-btn {
-    padding: 20px 25px;
+    padding: 15px 20px;
     font-size: 110%;
     background-color: #e07519;
     color: white;
@@ -162,11 +129,13 @@ nav {background-color: #000; }
     border-radius: 10px;
     transition: transform 0.3s;
     cursor: pointer;
+    margin-top: 60px;
 }
 
 .sub-btn:hover {
     transform: scale(1.1);
 }
+
 
 /* -------- Classes for processing in JS -------- */
 
@@ -174,7 +143,3 @@ nav {background-color: #000; }
 .hidden {display: none; }
 
 .nav-active {width: 100%; }
-
-.msg-text { color: #930202;}
-
-.msg-link { color: #e07519;}

@@ -45,6 +45,14 @@ a {text-decoration: none; }
     padding: 15px;
 }
 
+.center-box {
+
+    margin-left: 50%;
+    margin-top: 10%;
+    transform: translate(-50%);
+    display: inline-block;
+}
+
 
 /* -------- Navigation -------- */
 
@@ -137,14 +145,6 @@ input[type=submit] {
 input[type=submit]:hover {
     
     background-color: #b96115;
-}
-
-.center-box {
-
-    margin-left: 50%;
-    margin-top: 10%;
-    transform: translate(-50%);
-    display: inline-block;
 }
 
 
