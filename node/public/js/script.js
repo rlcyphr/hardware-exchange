@@ -7,19 +7,18 @@ $(document).ready(function() {
         console.log('test');
         $('ul li a').addClass('hidden');
 
-
     }
 
     $('.hamburger-menu').click(function() {
         
 
         if ($('ul li a').hasClass('hidden') ) {
-
+            // if the links have the hidden class, remove it, and set the navbar to take up 100% width
             $('ul li a').removeClass('hidden');
             $('.main-nav').addClass('nav-active');
 
         } else {
-
+            // else, clicking the hamburger menu hides the dropdown box and only shows the menu
             $('ul li a').addClass('hidden');
             $('.main-nav').removeClass('nav-active');
         }

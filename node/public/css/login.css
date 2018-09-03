@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
     height: 100%;

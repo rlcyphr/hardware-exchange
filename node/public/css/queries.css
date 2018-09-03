@@ -4,6 +4,11 @@
     
 }
 
+/*
+    Adjustments to row width for screens that are smaller than the average desktop screen but larger
+    than the screens of most mobile devices
+*/
+
 @media only screen and (max-width: 1139px) and (min-width: 768px) {
     
     .row {width: 100%; }
@@ -21,12 +26,30 @@
     
     .main-nav li a {font-size: 105%; }
 
+    .input-box textarea {
+        width: 560px;
+        height: 260px;
+    }
+
 }
+
+
+
+
+/* 
+    navbar on smaller screens, but larger than those that use the mobile view 
+*/
+
+
+
 
 @media only screen and (max-width: 864px) and (min-width: 768px) {
     
-    /* -------- navbar on smaller screens, but larger than those that use the mobile view -------- */
-    
+    .input-box textarea {
+        width: 440px;
+        height: 200px;
+    }
+
     .main-nav li {
 
         margin: 0 30px;
@@ -41,14 +64,25 @@
 
 }
 
+
+
+
+/* 
+    Media queries for phones and tablets - most of the adjustments are made here 
+*/
+
+
+
+
 @media only screen and (max-width: 768px) {
     
+    /* -------- row sizing -------- */
+
     .row {
         width: 100%;
         padding: 15px 0;
     }
 
-    
 
     /* -------- HW exchange logo at the top of the page -------- */
 
@@ -64,7 +98,6 @@
     
     nav .row {
         
-        /*position: fixed;*/
         z-index: 1;
         padding: 15px 0;
         background: rgba(0, 0, 0, 0.75);
@@ -113,6 +146,8 @@
 
     /* -------- Mobile navigation - hamburger menu -------- */
 
+
+
     .hamburger-menu {
 
         display: block;
@@ -122,14 +157,21 @@
         transition: transform 0.3s;
         background-image: url('../img/icons/menu.svg');
         margin-right: 30px;
+        
     }
+
+
 
     /* -------- Mobile look for register menu -------- */
 
 
     .hamburger-menu:hover {transform: scale(1.15); }
     
+
+
     /* -------- containers for item displays -------- */
+
+
 
     .img-box {
         
@@ -152,18 +194,34 @@
     .box {font-size: 90%; }
 
 
+    /* -------- Header for account page -------- */
 
-    /* Header for account page */
+
     h1 {
         font-size: 180%;
         transform: translate(0, 0);
         float: right;
     }
-    
 
+    /* -------- Size of the text area on smaller screens -------- */
+
+    .input-box textarea {
+        padding: 15px;
+        width: 360px;
+        height: 160px;
+    }
 
 
 }
+
+
+
+
+/* -----------------------------------------------------------------
+   Minor adjustments for very small screens, such as those on phones
+   ----------------------------------------------------------------- */
+
+
 
 
 @media only screen and (max-width: 648px) {

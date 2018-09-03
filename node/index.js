@@ -23,7 +23,14 @@ const validator = require('email-validator');
 const cookie_parser = require('cookie-parser');
 
 
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // -------- Start web server and get web pages, as well as set renderer
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 
 var app = express(); // start the web server
 app.engine('handlebars', expressHandlebars()); // set express to use handlebars renderer
@@ -36,9 +43,15 @@ app.use(body_parser.urlencoded( {extended:true} )); // tell express server to us
 app.use('/', express.static(path.join(process.cwd(), 'public'))) // set static assets directory to /public for handlebars renderer
 app.use(cookie_parser());
 
+
+
+
 // ++++++++++++++++++++++++++++++++++++++++
 // -------- verification functions --------
 // ++++++++++++++++++++++++++++++++++++++++ 
+
+
+// parse cookies
 
 
 function parseCookies(request) {
@@ -51,7 +64,9 @@ function parseCookies(request) {
     return list;
 }
 
+
 // for pages that require login to access, check the value of the cookie
+
 
 function requiresLogin(req, res, next) {
 
@@ -101,7 +116,9 @@ function requiresLogin(req, res, next) {
     
 };
 
+
 // -------- check for issues with submitted emails --------
+
 
 function emailExists(email, callback) {
     // build sql command
@@ -137,7 +154,9 @@ function emailExists(email, callback) {
 
 }
 
-// generate cookie for browser
+
+// -------- generate cookie for browser --------
+
 
 function genCookie(email, password) {
 
@@ -145,9 +164,27 @@ function genCookie(email, password) {
     return data;
 }
 
+// -------- check that object is one of the allowed options -------- 
+
+function validOption(item, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] == item) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+let componentType = ['cpu', 'motherboard', 'ram', 'case', 'cooler', 'gpu', 'monitor', 'keyboard', 'psu', 'hdd', 'ssd'];
+
+
 // +++++++++++++++++++++++++++++++
 // -------- website calls --------
 // +++++++++++++++++++++++++++++++
+
+
+
 
 app.get('/', (req, res) => {res.render('index'); }); 
 app.get('/register', (req, res) => {res.render('register'); });
@@ -155,6 +192,10 @@ app.get('/thanks', (req, res) => {res.render('thanks'); });
 app.get('/login', (req, res) => {res.render('login'); });
 app.get('/account', requiresLogin, (req, res) => {res.render('account'); });
 app.get('/addItem', requiresLogin, (req, res) => {res.render('addItem'); });
+app.get('/added-item', (req, res) => {res.render('added-item'); });
+
+
+
 
 // +++++++++++++++++++++++++++
 // -------- api calls --------
@@ -162,6 +203,8 @@ app.get('/addItem', requiresLogin, (req, res) => {res.render('addItem'); });
 
 
 // use web server to get and push to path /componenttypes
+
+
 app.get("/componenttypes", (req, res) => { 
     
     
@@ -195,11 +238,14 @@ app.get("/componenttypes", (req, res) => {
     
 });
 
+
 // get the user's data from the server
+
 
 app.get("/userinfo", (req, res) => {
 
     console.log("I'm here!");
+
     // what to do here: db call to get the username based on the cookie in the browser
     // use the result to display the user's name on the account page (and perhaps the username as well)
     // also need to create sql command for the server to use
@@ -215,7 +261,6 @@ app.get("/userinfo", (req, res) => {
     var sql = '';
     sql += 'SELECT * FROM public."user" ';
     sql += 'WHERE cookie = $1; ';
-
 
     pool.connect((error, client, done) => {
 
@@ -235,23 +280,12 @@ app.get("/userinfo", (req, res) => {
 
                 }
             }
-
-
-
-
         });
-
-
-
     });
-
-
-
 });
 
-// +++++++++++++++++++++++++++++++++++
+
 // -------- register new user --------
-// +++++++++++++++++++++++++++++++++++
 
 
 app.post("/register", (req, res) => {
@@ -306,7 +340,9 @@ app.post("/register", (req, res) => {
                 client.query(sql, [email, passwordHash, dateCreated, username, cookie], (error, result) => { 
                 
                     if (error) {
+
                         console.log(error);
+
                     } else {
 
                         // set a cookie that contains the hashed password and email of the user, the email address, and the username for privileged
@@ -335,9 +371,8 @@ app.post("/register", (req, res) => {
 
 });
 
-// ++++++++++
+
 // login post
-// ++++++++++
 
 
 app.post("/login", (req, res) => {
@@ -455,6 +490,180 @@ app.post("/login", (req, res) => {
     
 });
 
+// post submitted item data to user's account
+
+/*  This needs to return the user ID and component type ID from the database
+    e.g. like "SELECT user ID FROM user database, WHERE email is the one stored in the browser cookie"
+    and "SELECT ID from componentID table WHERE IDvalue = the one specified by the user"
+
+*/
+
+app.post("/addItem", (req, res) => {
+
+    
+
+
+    if (req.body.title == false) {
+        // the user has not sent a title
+        res.redirect('/account?msg=noTitle');
+
+    } else if (validOption(req.body.itemType, componentType) == false) {
+        // user did not choose a valid item type 
+        res.redirect('/account?msg=invalidType');
+
+    } else {
+
+        /* 
+            connecting to the database to retrieve the user ID and component ID, as well as 
+            add the item to the database. This is done by checking the browser cookie for the email,
+            then checking that against the user ID in the database.
+        */
+
+        let cookies = parseCookies(req);
+        let email = decodeURIComponent(cookies.email);
+
+        sql = '';
+        sql += 'SELECT * FROM public.user ';
+        sql += 'WHERE email = $1; ';
+
+
+        pool.connect((error, client, done) => {
+
+            client.query(sql, [email], (error, result) => {
+
+                if (error) {
+
+                    console.log(error);
+
+                } else {
+
+                    /* 
+                        this page cannot be accessed without a browser cookie, although the user may delete it - hence
+                        the need for it to be checked again on the server side
+                    */
+
+                    if (result.rows.length == 0) {
+                        // the email in the cookie does not match anything in the database
+                        res.redirect('/account?msg=bad-cookie');
+
+                    } else {
+
+                        /*  the email is valid, and the user's ID can now be returned 
+                            and added to the input for the item that they have added
+                        */
+
+                        let user = result.rows[0];
+                        let userID = user.userID;
+
+                        /* 
+                            Build the sql command to add the new item to the database, and grab the description and title from the 
+                            user's form entry
+                        */
+            
+                        sql = '';
+                        sql += 'INSERT INTO public.component ( ';
+                        sql += '"userID", ';
+                        sql += '"imagePath", ';
+                        sql += 'description, ';
+                        sql += 'title, ';
+                        sql += '"componentTypeID" ) ';
+                        sql += 'VALUES ($1, $2, $3, $4, $5); ';
+
+                        let description = req.body.description;
+                        let title = req.body.title;
+
+                        client.query(sql, [userID, 1, description, title, 1], (error, result) => {
+
+                            /* 
+                                run the sql command that adds the data provided by the user, to the database
+                                (this includes some placeholder values which will be added at a later date)
+
+                            */
+                
+                            if (error) {
+            
+                                console.log(error);
+            
+                            } else {
+            
+                                /* 
+                                    The command has been executed successfully, and the user is redirected to a webpage recognising that they
+                                    have added an item
+                                */
+            
+                                res.redirect('/added-item');
+                                done();
+            
+                                
+                            }
+                
+                        });
+
+                    }
+                }
+
+            });
+
+            
+
+            
+
+
+            
+    
+    
+        });
+
+    }
+
+
+});
+
+
+app.post('/additem2', (req, res) => {
+
+    let cookies = parseCookies(req);
+
+    // get the hash from browser
+    let hash = decodeURIComponent(cookies.hash);
+    console.log("hash = " + hash);
+
+    // build the sql command
+
+    var sql = '';
+    sql += 'SELECT * FROM public."user" ';
+    sql += 'WHERE cookie = $1; ';
+
+    pool.connect((error, client, done) => {
+
+        client.query(sql, [hash], (error, result) => {
+
+            if (error) {
+                console.log(error);
+            } else {
+                
+                if (result.rows.length == 0) {
+                    // the cookie provided does not match any user
+                    res.sendStatus(401);
+
+
+                } else {
+                    // user was found 
+                    var user = result.rows[0];
+                
+                    //now we can insert a new item - we know the user.
+                    //grab the form fields they submitted in the form..
+
+                    //insert here
+
+
+
+                }
+            }
+        });
+    });
+
+});
 
 
 
