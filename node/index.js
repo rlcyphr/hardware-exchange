@@ -121,15 +121,19 @@ function requiresLogin(req, res, next) {
 
 
 function emailExists(email, callback) {
+
     // build sql command
+
     var sql = '';
     sql = sql + 'SELECT * FROM public."user" ';
     sql = sql + 'WHERE email = $1';
 
     // login to the server with credentials
+
     pool.connect((error, client, done) => { 
         
         // run sql insert command and provide details - these are returned from the form sent from the client
+
         client.query(sql, [email], (error, result) => { 
         
             if (error) {         
@@ -170,10 +174,10 @@ function validOption(item, array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] == item) {
             return true;
-        } else {
-            return false;
         }
     }
+
+    return false;
 }
 
 let componentType = ['cpu', 'motherboard', 'ram', 'case', 'cooler', 'gpu', 'monitor', 'keyboard', 'psu', 'hdd', 'ssd'];
@@ -500,14 +504,14 @@ app.post("/login", (req, res) => {
 
 app.post("/addItem", (req, res) => {
 
-    
-
+    let item_type = req.body.itemType || '';    
+    console.log(item_type);
 
     if (req.body.title == false) {
         // the user has not sent a title
         res.redirect('/account?msg=noTitle');
 
-    } else if (validOption(req.body.itemType, componentType) == false) {
+    } else if (validOption(item_type, componentType) == false) {
         // user did not choose a valid item type 
         res.redirect('/account?msg=invalidType');
 
@@ -543,75 +547,100 @@ app.post("/addItem", (req, res) => {
                     */
 
                     if (result.rows.length == 0) {
+
                         // the email in the cookie does not match anything in the database
+                        // might not be necessary, since the page checks the cookie before allowing a POST request to it
+
                         res.redirect('/account?msg=bad-cookie');
 
                     } else {
 
-                        /*  the email is valid, and the user's ID can now be returned 
-                            and added to the input for the item that they have added
+                        /*  
+                            the email is valid and the user's ID can now be returned to the database
+                            now the component type ID needs to be returned
                         */
 
                         let user = result.rows[0];
                         let userID = user.userID;
+                        console.log(userID);
 
-                        /* 
-                            Build the sql command to add the new item to the database, and grab the description and title from the 
-                            user's form entry
-                        */
-            
+                        
                         sql = '';
-                        sql += 'INSERT INTO public.component ( ';
-                        sql += '"userID", ';
-                        sql += '"imagePath", ';
-                        sql += 'description, ';
-                        sql += 'title, ';
-                        sql += '"componentTypeID" ) ';
-                        sql += 'VALUES ($1, $2, $3, $4, $5); ';
+                        sql += 'SELECT "componentTypeID" FROM public."componentType" ';
+                        sql += 'WHERE "componentTypeDescription" = $1; ';
 
-                        let description = req.body.description;
-                        let title = req.body.title;
 
-                        client.query(sql, [userID, 1, description, title, 1], (error, result) => {
+                        client.query(sql, [item_type], (error, result) => {
+                            // check the database for the item type ID
+                            // check for the ID where the item type provided by the user matches the description in the db
 
-                            /* 
-                                run the sql command that adds the data provided by the user, to the database
-                                (this includes some placeholder values which will be added at a later date)
-
-                            */
-                
                             if (error) {
-            
                                 console.log(error);
-            
                             } else {
-            
+
+                                let itemID = result.rows[0].componentTypeID;
+                                console.log(itemID);
+
                                 /* 
-                                    The command has been executed successfully, and the user is redirected to a webpage recognising that they
-                                    have added an item
+                                    We now have the user ID and item ID, so they can be added to the database
+                                    along with other data provided by the user
+                                */
+
+                                /* 
+                                    Build the sql command to add the new item to the database, and grab the description and title from the 
+                                    user's form entry
                                 */
             
-                                res.redirect('/added-item');
-                                done();
-            
-                                
+                                sql = '';
+                                sql += 'INSERT INTO public.component ( ';
+                                sql += '"userID", ';
+                                sql += '"imagePath", ';
+                                sql += 'description, ';
+                                sql += 'title, ';
+                                sql += '"componentTypeID" ) ';
+                                sql += 'VALUES ($1, $2, $3, $4, $5); ';
+
+                                let description = req.body.description;
+                                let title = req.body.title;
+
+                                client.query(sql, [userID, 1, description, title, itemID], (error, result) => {
+
+                                    /* 
+                                        run the sql command that adds the data provided by the user, to the database
+                                        (this includes some placeholder values which will be added at a later date)
+
+                                    */
+                        
+                                    if (error) {
+                    
+                                        console.log(error);
+                    
+                                    } else {
+                    
+                                        /* 
+                                            The command has been executed successfully, and the user is redirected to a webpage recognising that they
+                                            have added an item
+                                        */
+                    
+                                        res.redirect('/added-item');
+                                        done();
+                    
+                                        
+                                    }
+                        
+                                });
+
                             }
-                
+
+
                         });
+
 
                     }
                 }
 
             });
 
-            
-
-            
-
-
-            
-    
-    
         });
 
     }
