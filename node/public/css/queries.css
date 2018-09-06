@@ -1,7 +1,7 @@
 @media only screen and (min-width: 1140px) {
     
     .hamburger-menu {display: none; }
-    
+
 }
 
 /*
@@ -10,6 +10,8 @@
 */
 
 @media only screen and (max-width: 1139px) and (min-width: 768px) {
+
+    .header-box h1 {font-size: 180%; }
     
     .row {width: 100%; }
 
@@ -36,15 +38,16 @@
 
 
 
-/* 
+/*  --------------------------------------------------------------------------
     navbar on smaller screens, but larger than those that use the mobile view 
+    --------------------------------------------------------------------------
 */
 
 
 
 
 @media only screen and (max-width: 864px) and (min-width: 768px) {
-    
+
     .input-box textarea {
         width: 440px;
         height: 200px;
@@ -52,7 +55,7 @@
 
     .main-nav li {
 
-        margin: 0 30px;
+        margin: 0 30px 0 0;
         font-size: 80%;
 
     }
@@ -62,14 +65,20 @@
         transform: translate(0, 75%);
     }
 
+    #page-header-text a {
+        font-size: 180%;
+    }
+
 }
 
 
 
 
-/* 
+/*  -----------------------------------------------------------------------------
     Media queries for phones and tablets - most of the adjustments are made here 
+    -----------------------------------------------------------------------------
 */
+
 
 
 
@@ -160,13 +169,7 @@
         
     }
 
-
-
-    /* -------- Mobile look for register menu -------- */
-
-
     .hamburger-menu:hover {transform: scale(1.15); }
-    
 
 
     /* -------- containers for item displays -------- */
@@ -188,7 +191,8 @@
     .icon-box {
         float: none;
         margin-left: 50%;
-        transform: translate(-25%, 0);
+        transform: translate(-50%, 0);
+        margin-bottom: 30px;
     }
 
     .box {font-size: 90%; }
@@ -201,6 +205,7 @@
         font-size: 180%;
         transform: translate(0, 0);
         float: right;
+
     }
 
     /* -------- Size of the text area on smaller screens -------- */
@@ -234,6 +239,15 @@
     .box {
         float: none;
         display: block;
+    }
+
+    .info-box {
+        border-top: 1px solid #a5a5a5;
+        padding: 25px 0;
+    }
+    .info-box div {
+        display: block;
+        margin-bottom: 40px;
     }
 
     .info-box div:last-of-type {

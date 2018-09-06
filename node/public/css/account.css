@@ -7,10 +7,16 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 a {text-decoration: none; }
@@ -36,14 +42,20 @@ a {text-decoration: none; }
 
 h1 {
     font-size: 240%;
-    transform: translate(0, 50%);
+    transform: translate(0, 15%);
     float: right;
+}
+
+h2 {
+    font-size: 180%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 
 .header-box {
     display: inline-block;
-    transform: translate(-65%, 0); 
+    transform: translate(-50%, 0); 
     margin-left: 50%;
     margin-top: 10%;
 }
@@ -61,16 +73,20 @@ h1 {
 
 .icon-box {
     float: left;
-    margin: 25px;
+    margin-right: 30px;
+    background-image: url("../img/placeholders/download.jpeg");
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
 }
 
 
 .icon-box img {
-    width: 80px;
-    height: 80px;
+    
     overflow: hidden;
-    border-radius: 75%;
-
+    
 }
 
 
@@ -84,13 +100,13 @@ nav {background-color: #000; }
     
     list-style: none;
     float: right;
-    transform: translate(0, 50%);
+    transform: translate(25%, 50%);
 }
 
 .main-nav li {
     
     float: left;
-    margin: 0 60px;
+    margin: 0 50px;
     
 }
 
@@ -124,10 +140,14 @@ nav {background-color: #000; }
 
 /* -------- Information for users' personal pages -------- */
 
+#account-details .row:first-of-type {
+    margin-bottom: 100px;
+}
+
 .info-box {
     clear: both; 
-    width: 70%;
-    margin-left: 15%;
+    width: 80%;
+    margin-left: 10%;
     margin-top: 80px;
 }
 
@@ -138,7 +158,11 @@ nav {background-color: #000; }
     display: inline-block;
 }
 
-.info-box div span {display: block; }
+.info-box div span {
+    display: block; 
+    margin-top: 5px;
+}
+
 
 .info-box div:last-of-type {
     float: right;
@@ -147,19 +171,19 @@ nav {background-color: #000; }
 
 /* -------- Call to action button -------- */
 
-.btn-holder {
-    margin-left: 50%;
-    transform: translate(-20%, 0);
-    margin-top: 120px;
-}
+
 
 .sub-btn {
+
+    display: block;
+    margin: 0 auto;
     padding: 20px 25px;
     font-size: 110%;
+    margin-top: 80px;
+    border-radius: 10px;
     background-color: #e07519;
     color: white;
     border: none;
-    border-radius: 10px;
     transition: transform 0.3s;
     cursor: pointer;
 }
@@ -167,6 +191,15 @@ nav {background-color: #000; }
 .sub-btn:hover {
     transform: scale(1.1);
 }
+
+
+
+/* -------- "Your items" section  -------- */
+
+#added-items .row:first-of-type {
+    margin-bottom: 80px;
+}
+
 
 /* -------- Classes for processing in JS -------- */
 

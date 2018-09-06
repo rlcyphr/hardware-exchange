@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 
+
     if ($(document).width() < 768) {
 
         console.log('test');
@@ -44,5 +45,7 @@ $(document).ready(function() {
         
 
     });
+
+
  
 });

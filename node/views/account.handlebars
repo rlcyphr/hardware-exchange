@@ -44,7 +44,7 @@
             <div class="row">
 
                 <div class="header-box">
-                    <div class="icon-box"><img src="img/placeholders/download.jpeg"></div>
+                    <div class="icon-box"></div>
                     <h1 id="accountName"></h1>
                 </div>
 
@@ -54,12 +54,20 @@
                 </div>
 
                 <div class="row">
-                    <div class="btn-holder"><button class="sub-btn" onclick="document.location.href='/addItem'">Add item</button></div>
+                    <button class="sub-btn" onclick="document.location.href='/addItem'">Add item</button>
                 </div>
 
             </div>
 
             
+
+        </section>
+
+        <section id="added-items">
+            <div class="row">
+                <h2>Your items</h2>
+            </div>
+
 
         </section>
 
@@ -86,8 +94,17 @@
             $("#accountName").html("Welcome, " + data.rows[0].username + "!");
             $('#email').html(data.rows[0].email);
             var d = new Date(parseInt(data.rows[0].dateCreated)).toUTCString();
-            $('#date-created').text(d);
+            
+            let datelist = d.split(' ').splice(0, 4);
+            let date = '';
+            for (let i = 0; i < datelist.length; i++) {
+                date += datelist[i] + ' '; 
+            }
+
+            $('#date-created').text(date);
         });
+
+
 
     </script>
 

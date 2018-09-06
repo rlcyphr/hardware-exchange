@@ -571,6 +571,7 @@ app.post("/addItem", (req, res) => {
 
 
                         client.query(sql, [item_type], (error, result) => {
+                            
                             // check the database for the item type ID
                             // check for the ID where the item type provided by the user matches the description in the db
 
