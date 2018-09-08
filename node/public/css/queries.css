@@ -33,6 +33,12 @@
         height: 260px;
     }
 
+    /* set margin to a quarter of the width of the screen, minus the width of the image */
+
+    .item-view {
+        margin: 0 calc(25% - 150px) 80px calc(25% - 150px);
+    }
+
 }
 
 
@@ -214,6 +220,13 @@
         padding: 15px;
         width: 360px;
         height: 160px;
+    }
+
+    /* -------- Size of image boxes for the 'your items' section -------- */
+
+    .item-view {
+        margin: 0 0 80px 50%;
+        transform: translate(-50%, 0);
     }
 
 

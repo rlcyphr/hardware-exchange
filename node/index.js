@@ -281,11 +281,83 @@ app.get("/userinfo", (req, res) => {
                 } else {
                     // user was found - send back the user's details as a JSON string
                     res.json(result);
+                    done();
 
                 }
             }
         });
     });
+});
+
+app.get("/partslist", (req, res) => {
+
+    // get email from logged in user
+    let cookies = parseCookies(req);
+    let email = decodeURIComponent(cookies.email);
+    console.log(email);
+
+    // build sql
+    sql = '';
+    sql += 'SELECT * FROM public.user ';
+    sql += 'WHERE email = $1; ';
+
+    // get user id
+
+    pool.connect((error, client, done) => {
+
+        client.query(sql, [email], (error, result) => {
+
+            if (error) {
+                console.log(error);
+            } else {
+                
+                if (result.rows.length == 0) {
+
+                    res.json({});
+
+                } else {
+
+                    let userID = result.rows[0].userID;
+
+                    // the user ID has been returned, so the list of all parts can be returned 
+                    sql = '';
+                    sql += 'SELECT * FROM public.component ';
+                    sql += 'WHERE "userID" = $1; ';
+
+                    client.query(sql, [userID], (error, result) => {
+
+                        if (error) {
+
+                            console.log(error);
+
+                        } else {
+                            // send the data back to /partslist
+                            console.log(result);
+                            res.json(result);
+                            done();
+
+                        }
+ 
+
+                    });
+
+
+                }
+                
+
+            }
+
+
+        });
+
+
+
+    });
+
+
+
+
+
 });
 
 

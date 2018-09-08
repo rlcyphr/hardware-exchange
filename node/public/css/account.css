@@ -19,6 +19,8 @@ body {
     overflow-x: hidden;
 }
 
+ul {list-style: none;}
+
 a {text-decoration: none; }
 
 
@@ -198,6 +200,19 @@ nav {background-color: #000; }
 
 #added-items .row:first-of-type {
     margin-bottom: 80px;
+}
+
+.item-holder {
+    overflow: hidden;
+
+}
+
+
+.item-view {
+    float: left;
+    margin: 35px;
+    width: 300px;
+    height: auto;
 }
 
 

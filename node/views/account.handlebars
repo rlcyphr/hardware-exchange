@@ -63,10 +63,67 @@
 
         </section>
 
+        
+
         <section id="added-items">
+
             <div class="row">
                 <h2>Your items</h2>
             </div>
+
+            <div class="row item-holder">
+                <div class="item-view">
+                    <img src="img/placeholders/download.jpeg">
+                    <p class="img-title">test</p>
+                </div>
+                <div class="item-view">
+                    <img src="img/placeholders/download.jpeg">
+                    <p class="img-title">test</p>
+                </div>
+                <div class="item-view">
+                    <img src="img/placeholders/download.jpeg">
+                    <p class="img-title">test</p>
+                </div>
+                <div class="item-view">
+                    <img src="img/placeholders/download.jpeg">
+                    <p class="img-title">test</p>
+                </div>
+                <div class="item-view">
+                    <img src="img/placeholders/download.jpeg">
+                    <p class="img-title">test</p>
+                </div>
+                <div class="item-view">
+                    <img src="img/placeholders/download.jpeg">
+                    <p class="img-title">test</p>
+                </div>
+
+                <!-- <ul>
+                    <li class="item-view">
+                    </li>
+                    <li class="item-view">
+                        <img src="img/placeholders/download.jpeg">
+                    </li>
+                    <li class="item-view">
+                        <img src="img/placeholders/download.jpeg">
+                    </li>
+                    <li class="item-view">
+                        <img src="img/placeholders/download.jpeg">
+                    </li>
+                    <li class="item-view">
+                        <img src="img/placeholders/download.jpeg">
+                    </li>
+                    <li class="item-view">
+                        <img src="img/placeholders/download.jpeg">
+                    </li>
+                    
+                </ul>>
+                -->
+            </div>
+
+
+
+
+            
 
 
         </section>
@@ -103,6 +160,36 @@
 
             $('#date-created').text(date);
         });
+
+
+        /*  
+            -----------------------------------------------------------------------------------------------------------------------
+            GET /component for the logged in user - need to check the cookie for email, then check in the database for the user ID,
+            then return a list of all components that the user has added by their ID.
+            -----------------------------------------------------------------------------------------------------------------------
+        */  
+
+
+        // get user ID by their email
+
+
+        $.get("/partslist", (list) => {
+
+            // stuff here for using stuff from the db and inputting into the appropriate fields on the page
+            console.log(list.rows);
+            $("#items").text(list.rows[0].componentID);
+
+            // loop through all of the items in the loop and add the details to the appropriate places - these include
+            // title, description, type, etc
+
+
+
+
+        });
+
+    
+
+
 
 
 
