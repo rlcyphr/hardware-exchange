@@ -170,7 +170,7 @@ function genCookie(email, password) {
 
 // -------- check that object is one of the allowed options -------- 
 
-function validOption(item, array) {
+/*function validOption(item, array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] == item) {
             return true;
@@ -179,8 +179,7 @@ function validOption(item, array) {
 
     return false;
 }
-
-let componentType = ['cpu', 'motherboard', 'ram', 'case', 'cooler', 'gpu', 'monitor', 'keyboard', 'psu', 'hdd', 'ssd'];
+*/
 
 
 // +++++++++++++++++++++++++++++++
@@ -289,6 +288,7 @@ app.get("/userinfo", (req, res) => {
     });
 });
 
+
 app.get("/partslist", (req, res) => {
 
     // get email from logged in user
@@ -319,10 +319,13 @@ app.get("/partslist", (req, res) => {
 
                     let userID = result.rows[0].userID;
 
-                    // the user ID has been returned, so the list of all parts can be returned 
+                    // the user ID has been returned, so the list of all parts can be returned, as well as part types
+
                     sql = '';
-                    sql += 'SELECT * FROM public.component ';
-                    sql += 'WHERE "userID" = $1; ';
+                    sql += 'SELECT "componentID", "userID", "imagePath", description, title, "componentTypeDescription" ';
+                    sql += 'FROM public.component, public."componentType" ';
+                    sql += 'WHERE component."componentTypeID" = "componentType"."componentTypeID" ';
+                    sql += 'AND "userID" = $1; ';
 
                     client.query(sql, [userID], (error, result) => {
 
@@ -332,15 +335,13 @@ app.get("/partslist", (req, res) => {
 
                         } else {
                             // send the data back to /partslist
-                            console.log(result);
+                            console.log("Results sent!");
                             res.json(result);
                             done();
-
                         }
  
 
                     });
-
 
                 }
                 
@@ -349,6 +350,9 @@ app.get("/partslist", (req, res) => {
 
 
         });
+
+
+
 
 
 
@@ -570,7 +574,7 @@ app.post("/login", (req, res) => {
 
 /*  This needs to return the user ID and component type ID from the database
     e.g. like "SELECT user ID FROM user database, WHERE email is the one stored in the browser cookie"
-    and "SELECT ID from componentID table WHERE IDvalue = the one specified by the user"
+    and "SELECT ID from componentID table WHERE ID value = the one specified by the user"
 
 */
 
@@ -582,10 +586,6 @@ app.post("/addItem", (req, res) => {
     if (req.body.title == false) {
         // the user has not sent a title
         res.redirect('/account?msg=noTitle');
-
-    } else if (validOption(item_type, componentType) == false) {
-        // user did not choose a valid item type 
-        res.redirect('/account?msg=invalidType');
 
     } else {
 
@@ -602,8 +602,8 @@ app.post("/addItem", (req, res) => {
         sql += 'SELECT * FROM public.user ';
         sql += 'WHERE email = $1; ';
 
-
         pool.connect((error, client, done) => {
+
 
             client.query(sql, [email], (error, result) => {
 
