@@ -71,145 +71,7 @@
                 <h2>Your items</h2>
             </div>
 
-            <div class="row item-holder" id="elem">
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-                <!--
-                <div class="item-view">
-                    <img src="img/placeholders/download.jpeg">
-                    <p class="img-title">test</p>
-                </div>
-                <div class="item-view">
-                    <img src="img/placeholders/download.jpeg">
-                    <p class="img-title">test</p>
-                </div>
-                <div class="item-view">
-                    <img src="img/placeholders/download.jpeg">
-                    <p class="img-title">test</p>
-                </div>
-                <div class="item-view">
-                    <img src="img/placeholders/download.jpeg">
-                    <p class="img-title">test</p>
-                </div>
-                <div class="item-view">
-                    <img src="img/placeholders/download.jpeg">
-                    <p class="img-title">test</p>
-                </div>
-                -->
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-
-                <div class="item-view">
-                    <div class="img-container"></div>
-                    <div class="title-container">
-                        <p class="img-title">test</p>
-                        <p class="comp-type">CPU</p>
-                    </div>
-                    <div class="desc-container">
-                        <p class="desc">description here..dfgfdgfgfgfdgfdgfgfdgfdfdsfdssddg.</p>
-                    </div>
-                </div>
-
-                <!-- <ul>
-                    <li class="item-view">
-                    </li>
-                    <li class="item-view">
-                        <img src="img/placeholders/download.jpeg">
-                    </li>
-                    <li class="item-view">
-                        <img src="img/placeholders/download.jpeg">
-                    </li>
-                    <li class="item-view">
-                        <img src="img/placeholders/download.jpeg">
-                    </li>
-                    <li class="item-view">
-                        <img src="img/placeholders/download.jpeg">
-                    </li>
-                    <li class="item-view">
-                        <img src="img/placeholders/download.jpeg">
-                    </li>
-                    
-                </ul>>
-                -->
-            </div>
-
-
-
-
-            
+            <div class="row item-holder" id="elem"></div> 
 
 
         </section>
@@ -264,18 +126,21 @@
             // stuff here for using stuff from the db and inputting into the appropriate fields on the page
             console.log(list.rows);
             let items = list.rows;
+            console.log(items.length);
 
             /*
                 Testing code for element creation and repeater
 
             */
 
-                // create the containing element
+
+            // create the containing element
+
+            for (let i = 0; i < items.length; i++) {
 
                 var containerDiv = document.createElement("div");
                 $(containerDiv).addClass("item-view");
                 document.getElementById("elem").appendChild(containerDiv);
-
 
                 // create image container
 
@@ -285,21 +150,32 @@
 
                 var title_container = document.createElement("div");
                 $(title_container).addClass("title-container");
-                $(containerDiv).append(title_container);
+
 
                 var image_title = document.createElement("p");
-                $(image_title).text(items[0].title).addClass("img-title");
+                $(image_title).text(items[i].title).addClass("img-title");
+
                 var component_type = document.createElement("p");
-                $(component_type).text(items[0].componentTypeDescription).addClass("comp-type");
+                $(component_type).text(items[i].componentTypeDescription).addClass("comp-type");
 
+                // create description div and paragraph
 
-                //$(component_type).text(items[0].  this is incomplete and does not work warning - it will add the comp type to the listing
+                var desc_holder = document.createElement("div");
+                $(desc_holder).addClass("desc-container");
+                
+                var desc = document.createElement("p");
+                $(desc).text(items[i].description).addClass("desc");
 
+                // append all of the created elements
+
+                $(containerDiv).append(title_container);
                 $(title_container).append(image_title);
                 $(title_container).append(component_type);
+                $(desc_holder).append(desc);
+                $(containerDiv).append(desc_holder);
 
-            // loop through all of the items in the loop and add the details to the appropriate places - these include
-            // title, description, type, etc
+            }
+
 
 
 

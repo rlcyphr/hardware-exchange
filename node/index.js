@@ -598,121 +598,151 @@ app.post("/addItem", (req, res) => {
         let cookies = parseCookies(req);
         let email = decodeURIComponent(cookies.email);
 
-        sql = '';
-        sql += 'SELECT * FROM public.user ';
-        sql += 'WHERE email = $1; ';
+
 
         pool.connect((error, client, done) => {
 
 
-            client.query(sql, [email], (error, result) => {
+            // check that the user has not modified the item type in the browser
+
+            sql = '';
+            sql += 'SELECT * FROM public."componentType" ';
+            sql += 'WHERE "componentTypeDescription" = $1; ';
+
+
+            client.query(sql, [item_type], (error, result) => {
 
                 if (error) {
-
                     console.log(error);
-
+                } else if (!(result.rows[0])) {
+                    res.redirect("/account?msg=invalid-type");
                 } else {
 
-                    /* 
-                        this page cannot be accessed without a browser cookie, although the user may delete it - hence
-                        the need for it to be checked again on the server side
-                    */
+                    // item type has been verified, the form is valid
 
-                    if (result.rows.length == 0) {
-
-                        // the email in the cookie does not match anything in the database
-                        // might not be necessary, since the page checks the cookie before allowing a POST request to it
-
-                        res.redirect('/account?msg=bad-cookie');
-
-                    } else {
-
-                        /*  
-                            the email is valid and the user's ID can now be returned to the database
-                            now the component type ID needs to be returned
-                        */
-
-                        let user = result.rows[0];
-                        let userID = user.userID;
-                        console.log(userID);
-
-                        
-                        sql = '';
-                        sql += 'SELECT "componentTypeID" FROM public."componentType" ';
-                        sql += 'WHERE "componentTypeDescription" = $1; ';
-
-
-                        client.query(sql, [item_type], (error, result) => {
-                            
-                            // check the database for the item type ID
-                            // check for the ID where the item type provided by the user matches the description in the db
-
-                            if (error) {
-                                console.log(error);
-                            } else {
-
-                                let itemID = result.rows[0].componentTypeID;
-                                console.log(itemID);
-
-                                /* 
-                                    We now have the user ID and item ID, so they can be added to the database
-                                    along with other data provided by the user
-                                */
-
-                                /* 
-                                    Build the sql command to add the new item to the database, and grab the description and title from the 
-                                    user's form entry
-                                */
+                    sql = '';
+                    sql += 'SELECT * FROM public.user ';
+                    sql += 'WHERE email = $1; ';
             
+        
+                    client.query(sql, [email], (error, result) => {
+        
+                        if (error) {
+        
+                            console.log(error);
+        
+                        } else {
+        
+                            /* 
+                                this page cannot be accessed without a browser cookie, although the user may delete it - hence
+                                the need for it to be checked again on the server side
+                            */
+        
+                            if (result.rows.length == 0) {
+        
+                                // the email in the cookie does not match anything in the database
+                                // might not be necessary, since the page checks the cookie before allowing a POST request to it
+        
+                                res.redirect('/account?msg=bad-cookie');
+        
+                            } else {
+        
+                                /*  
+                                    the email is valid and the user's ID can now be returned to the database
+                                    now the component type ID needs to be returned
+                                */
+        
+                                let user = result.rows[0];
+                                let userID = user.userID;
+        
+        
                                 sql = '';
-                                sql += 'INSERT INTO public.component ( ';
-                                sql += '"userID", ';
-                                sql += '"imagePath", ';
-                                sql += 'description, ';
-                                sql += 'title, ';
-                                sql += '"componentTypeID" ) ';
-                                sql += 'VALUES ($1, $2, $3, $4, $5); ';
-
-                                let description = req.body.description;
-                                let title = req.body.title;
-
-                                client.query(sql, [userID, 1, description, title, itemID], (error, result) => {
-
-                                    /* 
-                                        run the sql command that adds the data provided by the user, to the database
-                                        (this includes some placeholder values which will be added at a later date)
-
-                                    */
-                        
+                                sql += 'SELECT "componentTypeID" FROM public."componentType" ';
+                                sql += 'WHERE "componentTypeDescription" = $1; ';
+        
+        
+        
+                                client.query(sql, [item_type], (error, result) => {
+        
+                                    // check the database for the item type ID
+                                    // check for the ID where the item type provided by the user matches the description in the db
+        
                                     if (error) {
-                    
                                         console.log(error);
-                    
+        
                                     } else {
-                    
+        
+        
+                                        let itemID = result.rows[0].componentTypeID;
+                                        console.log(itemID);
+        
                                         /* 
-                                            The command has been executed successfully, and the user is redirected to a webpage recognising that they
-                                            have added an item
+                                            We now have the user ID and item ID, so they can be added to the database
+                                            along with other data provided by the user
+                                        */
+        
+                                        /* 
+                                            Build the sql command to add the new item to the database, and grab the description and title from the 
+                                            user's form entry
                                         */
                     
-                                        res.redirect('/added-item');
-                                        done();
-                    
-                                        
+                                        sql = '';
+                                        sql += 'INSERT INTO public.component ( ';
+                                        sql += '"userID", ';
+                                        sql += '"imagePath", ';
+                                        sql += 'description, ';
+                                        sql += 'title, ';
+                                        sql += '"componentTypeID" ) ';
+                                        sql += 'VALUES ($1, $2, $3, $4, $5); ';
+        
+                                        let description = req.body.description;
+                                        let title = req.body.title;
+        
+                                        client.query(sql, [userID, 1, description, title, itemID], (error, result) => {
+        
+                                            /* 
+                                                run the sql command that adds the data provided by the user, to the database
+                                                (this includes some placeholder values which will be added at a later date)
+        
+                                            */
+                                
+                                            if (error) {
+                            
+                                                console.log(error);
+                            
+                                            } else {
+                            
+                                                /* 
+                                                    The command has been executed successfully, and the user is redirected to a webpage recognising that they
+                                                    have added an item
+                                                */
+                            
+                                                res.redirect('/added-item');
+                                                done();
+                            
+                                                
+                                            }
+                                
+                                        });
+        
                                     }
-                        
+        
+        
                                 });
-
+        
+        
                             }
+                        }
+        
+                    });
 
-
-                        });
-
-
-                    }
                 }
 
+
             });
+
+
+
 
         });
 
