@@ -1,105 +1,109 @@
 <!DOCTYPE html>
 
-<head>
+<html>
+    <head>
 
-    <title>Hardware Exchange</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="css/register.css" rel="stylesheet" type="text/css">
-    <link href="css/queries.css" rel="stylesheet" type="text/css">
-    
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/script.js"></script>
-    
-</head>
-
-<body>
-
-    <header>
+        <title>Hardware Exchange</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <nav>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/queries.css" rel="stylesheet" type="text/css">
+        
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/script.js"></script>
+        
+    </head>
+
+    <body>
+
+        <header>
             
-            <div class="row">
+            <nav class="black-background">
                 
-                <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
-                <ul class="main-nav">
-                    <li><a href="/login">Log in </a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li><div class="hamburger-menu"></div></li>
-                </ul>   
- 
+                <div class="row">
+                    
+                    <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
+                    <ul class="main-nav">
+                        <li><a href="/login">Log in </a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><div class="hamburger-menu"></div></li>
+                    </ul>   
+    
+                </div>
+
+            </nav>
+            
+        </header>
+        
+        <section class="register-user">
+            
+            
+            <div class="center-box">
+                <div><h2>Register</h2></div>
+                <form method="post" action="/register">
+                    
+                    <div class="input-box">
+                        <p>Username:</p>                   
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="input-box">
+                        <p>Password:</p>                    
+                        <input type="password" name="passwd" required>
+                    </div>
+                    <div class="input-box">
+                        <p>Email:</p>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div id="msg"></div>
+                    <div class="input-box sub-btn">
+                        <input type="submit" value="Sign up!">
+                    </div>
+                    
+                </form>
+                
             </div>
+        
+        
+        
+        </section>
 
-        </nav>
-        
-    </header>
-    
-    <section class="register-user">
-        
-        
-        <div class="center-box">
-            <div><h2>Register</h2></div>
-            <form method="post" action="/register">
-                
-                <div class="input-box">
-                    <p>Username:</p>                   
-                    <input type="text" name="username" required>
-                </div>
-                <div class="input-box">
-                    <p>Password:</p>                    
-                    <input type="password" name="passwd" required>
-                </div>
-                <div class="input-box">
-                    <p>Email:</p>
-                    <input type="email" name="email" required>
-                </div>
-                <div id="msg"></div>
-                <div class="input-box sub-btn">
-                    <input type="submit" value="Sign up!">
-                </div>
-                
-            </form>
+        <script>
+
+            function gup(name) {
+                name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+                var regexS = "[\\?&]"+name+"=([^&#]*)";
+                var regex = new RegExp(regexS);
+                var results = regex.exec(window.location.href);
+                if (results == null) {
+                    return '';
+                } else {
+                    return results[1];
+                }
+            } 
             
-        </div>
-    
-    
-    
-    </section>
+            // -------- gup() - Get URL Param --------
 
-    <script>
+            var msg = gup('msg');
 
-        function gup(name) {
-            name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-            var regexS = "[\\?&]"+name+"=([^&#]*)";
-            var regex = new RegExp(regexS);
-            var results = regex.exec(window.location.href);
-            if (results == null) {
-                return '';
-            } else {
-                return results[1];
+            switch (msg) {
+
+                case 'bad-email':
+                    $('#msg').text('<p class="msg-text">Please input a valid email address.</p>');
+                    break;
+                case 'dupe-email':
+                    $('#msg').html('<p class="msg-text">That email already exists - did you mean to <span><a href="/login" class="msg-link">log in?</a></span></p>');
+                    break;
             }
-        } 
-        
-        // -------- gup() - Get URL Param --------
 
-        var msg = gup('msg');
+        </script>
 
-        switch (msg) {
-
-            case 'bad-email':
-                $('#msg').text('<p class="msg-text">Please input a valid email address.</p>');
-                break;
-            case 'dupe-email':
-                $('#msg').html('<p class="msg-text">That email already exists - did you mean to <span><a href="/login" class="msg-link">log in?</a></span></p>');
-                break;
-        }
-
-    </script>
     
-</body>
+    </body>
+
+</html>
     
     
     

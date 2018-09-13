@@ -157,7 +157,6 @@ input[type=submit]:hover {
 h2 {
     
     font-weight: 600;
-    margin-bottom: 60px;
     margin-left: 50%;
     transform: translate(-50%);
     display: inline-block;

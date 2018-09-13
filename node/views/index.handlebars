@@ -12,6 +12,9 @@
         
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/script.js"></script>
         
     </head>
 
@@ -24,6 +27,7 @@
                 <div class="row">
                     
                     <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
+
                     <ul class="main-nav">
                         <li><a href="/register">Register</a></li>
                         <li><a href="/login">Log in</a></li>
@@ -47,90 +51,97 @@
         
 
         <section class="images">
-            <div class="row">
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-                <div class="img-box">
-                    <img src="img/placeholders/download.jpeg">
-                    <div class="title-info">
-                        <p class="img-title">Testing</p>
-                        <p class="status-box">CPU</p>
-                    </div>
-                    <p class="img-desc">This is a test of a longer description for an item on the site</p>
-                </div>
-            </div>
-        
-            
+            <div class="row" id="elem"></div>
+
         </section> 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="../js/script.js"></script>
+
+        <script>
+
+            // grab email from cookie and show on page
+
+            function getCookie(name) {
+                var value = "; " + document.cookie;
+                var parts = value.split("; " + name + "=");
+                if (parts.length == 2) return parts.pop().split(";").shift();
+            }
+
+            var email = getCookie('email');
+            $('#email').html(decodeURIComponent(email));
+
+
+            /*  
+                -----------------------------------------------------------------------------------------------------------------------
+                GET /component for the logged in user - need to check the cookie for email, then check in the database for the user ID,
+                then return a list of all components that the user has added by their ID.
+                -----------------------------------------------------------------------------------------------------------------------
+            */  
+
+
+            // get user ID by their email
+
+
+            $.get("/partslist", (list) => {
+
+                // stuff here for using stuff from the db and inputting into the appropriate fields on the page
+                console.log(list.rows);
+                let items = list.rows;
+                console.log(items.length);
+
+                /*
+                    Testing code for element creation and repeater
+
+                */
+
+
+                // list all of the user's items on their page
+
+                for (let i = 0; i < items.length; i++) {
+
+                    var containerDiv = document.createElement("div");
+                    $(containerDiv).addClass("item-view");
+                    document.getElementById("elem").appendChild(containerDiv);
+
+
+                    // create image container
+                    $(containerDiv).append("<div class=\"img-container\"></div>");
+
+
+                    // container
+                    var title_container = document.createElement("div");
+                    $(title_container).addClass("title-container");
+
+
+                    // title
+                    var image_title = document.createElement("p");
+                    $(image_title).text(items[i].title).addClass("img-title");
+
+
+                    //component type
+                    var component_type = document.createElement("p");
+                    $(component_type).text(items[i].componentTypeDescription).addClass("comp-type");
+
+
+                    // create description div and paragraph
+                    var desc_holder = document.createElement("div");
+                    $(desc_holder).addClass("desc-container");
+                    var desc = document.createElement("p");
+                    $(desc).text(items[i].description).addClass("desc");
+
+
+                    // append all of the created elements
+                    $(containerDiv).append(title_container);
+                    $(title_container).append(image_title);
+                    $(title_container).append(component_type);
+                    $(desc_holder).append(desc);
+                    $(containerDiv).append(desc_holder);
+
+                }
+
+            });
+
+
+        </script>
         
     </body>
 

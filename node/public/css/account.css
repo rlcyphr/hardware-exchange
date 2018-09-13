@@ -42,16 +42,20 @@ a {text-decoration: none; }
 
 .hamburger-menu {display: none; }
 
-h1 {
+#accountName {
     font-size: 240%;
     transform: translate(0, 15%);
     float: right;
+    font-weight: 600;
 }
 
 h2 {
-    font-size: 180%;
-    text-align: center;
-    margin-bottom: 20px;
+    
+    font-weight: 600;
+    margin-left: 50%;
+    transform: translate(-50%);
+    display: inline-block;
+
 }
 
 
@@ -169,6 +173,14 @@ nav {background-color: #000; }
 .info-box div:last-of-type {
     float: right;
 
+}
+
+.info-box img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    margin-top: 5px;
 }
 
 /* -------- Call to action button -------- */

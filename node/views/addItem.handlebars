@@ -7,7 +7,7 @@
         <title>Hardware Exchange</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link href="../css/addItem.css" rel="stylesheet" type="text/css">
+        <link href="../css/style.css" rel="stylesheet" type="text/css">
         <link href="../css/queries.css" rel="stylesheet" type="text/css">
         
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
@@ -21,13 +21,13 @@
 
         <header>
         
-            <nav>
+            <nav class="black-background">
             
                 <div class="row">
                 
                     <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
+                    
                     <ul class="main-nav">
-
                         <li><a href="/login">Log in </a></li>
                         <li><a href="/register">Register</a></li>
                         <li><div class="hamburger-menu"></div></li>
@@ -47,16 +47,15 @@
             <!-- the form to add the item to the server -->
 
             <form method="post" action="/addItem">
+
                 <div class="input-box">
                     <p>Title:</p>                   
                     <input type="text" name="title" required>
                 </div>
-
                 <div class="input-box">
                     <p>Description:</p>                    
                     <textarea name="description" placeholder="Add a description..."></textarea>
                 </div>
-
                 <div class="input-box">
                     <p>Item type:</p>
                     <select name="itemType">
@@ -69,8 +68,8 @@
 
                 <div id="msg"></div>
 
-                <div>
-                    <input class="sub-btn" type="submit" value="Add item">
+                <div class="input-box sub-btn">
+                    <input type="submit" value="Add item">
                 </div>
 
             </form>

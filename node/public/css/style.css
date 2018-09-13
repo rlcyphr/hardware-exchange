@@ -1,3 +1,11 @@
+/*
+    ====================
+    Stuff for every page 
+    ====================
+*/
+
+
+
 /* -------- Setup -------- */
 
 
@@ -15,12 +23,13 @@ body {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-a {
+ul {list-style: none;}
 
-    text-decoration: none;
-}
+a {text-decoration: none; }
 
 
 /* -------- Headers -------- */
@@ -35,13 +44,17 @@ a {
 
 h2 {
     
-    width: 50%;
-    margin: 30px 0 60px 25%;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #e07519;
-    text-align: center;
-    
-    
+    font-weight: 600;
+    margin-left: 50%;
+    transform: translate(-50%);
+    display: inline-block;
+
+}
+
+/* black background for pages that use it */
+
+.black-background {
+    background-color: #000;
 }
 
 
@@ -76,13 +89,16 @@ h2 {
 /* -------- Navigation -------- */
 
 
-nav .row {padding-top: 45px; }
+nav .row {
+    padding: 17.5px 0; 
+}
 
 
 .main-nav {
     
     list-style: none;
     float: right;
+    transform: translate(0, 50%);
     
 }
 
@@ -102,12 +118,33 @@ nav .row {padding-top: 45px; }
     color: #fff;
 }
 
+/* -------- Mobile Navigation -------- */
+
+.hamburger-menu {
+    width: 40px;
+    height: auto;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.15);
+}
+
+
+
+/* 
+    ===============
+    Main page stuff
+    ===============
+*/
 
 
 
 /* -------- Buttons -------- */
-
-
 
 
 .search-box-main {
@@ -140,62 +177,230 @@ nav .row {padding-top: 45px; }
     
 }
 
+/*
+    ============
+    Account page
+    ============
+*/
 
 
-/* -------- Image Section -------- */
+#account-details .row:first-of-type {
+    margin-bottom: 100px;
+}
 
-
-.img-box {
-    
-    width: 250px;
-    margin: 0 65px;
-    margin-bottom: 30px;
-    float: left;
-    overflow: hidden;
-    
+.info-box {
+    clear: both; 
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 80px;
 }
 
 
-/* -------- Image Title -------- */
-
-
-.img-title {
-    
-    font-weight: 400; 
-    overflow: hidden;
+.info-box div {
+    color: #bfbfbf;
+    font-size: 90%;
     display: inline-block;
 }
 
-.title-info {
-    
-    margin-top: 4px;
-    border-bottom: 2px solid #cecece;
-    padding-bottom: 1px;
-    
+.info-box div span {
+    display: block; 
+    margin-top: 5px;
 }
 
-.img-desc {
-    
-    color: #6a6a6a;
-    font-size: 75%;
-    max-width: 100%;
-    
-}
 
-.status-box {
-    
-    padding: 3px;
+.info-box div:last-of-type {
     float: right;
-    font-size: 75%;
-    background-color: #1af72c;
-    border-radius: 3.5px;
+
+}
+
+.info-box img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+#accountName {
+    font-size: 240%;
+    transform: translate(0, 15%);
+    float: right;
+    font-weight: 600;
+}
+
+.header-box {
+    display: inline-block;
+    transform: translate(-50%, 0); 
+    margin-left: 50%;
+    margin-top: 10%;
+}
+
+/* -------- Call to action button -------- */
+
+
+
+.sub-btn {
+
+    display: block;
+    color: white;
+    border: none;
+    transition: transform 0.3s;
+    cursor: pointer;
+
+}
+
+.sub-btn input {
+    float: right;
+}
+
+input[type=submit] {
+   
+    
+    background-color: #e07519;
+    border: none;
+    transition: transform 0.3s;
+    color: #fff;
+    cursor: pointer;
+    padding: 15px 25px;
+    border-radius: 3px;
+    font-size: 90%;
+}
+
+input[type=submit]:hover {
+    transform: scale(1.15);
 }
 
 
-/* -------- Classes for processing in JS -------- */
+
+/* 
+    ===========================================
+    Repeater for items on the account/main page
+    ===========================================
+*/
+
+
+
+#added-items .row:first-of-type {
+    margin-bottom: 80px;
+}
+
+.item-holder {
+    overflow: hidden;
+
+}
+
+.item-view {
+    float: left;
+    margin: 35px;
+    width: 300px;
+    height: auto;
+}
+
+
+.img-container {
+    background-image: url("../img/placeholders/download.jpeg");
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+}
+
+.title-container {
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ccc;
+}
+
+.desc-container {
+
+    font-size: 75%;
+    margin-top: 10px;
+    color: #888;
+}
+
+.desc {
+    height: 2.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.img-title {
+    display: inline-block;
+}
+
+.comp-type {
+    float: right;
+}
+
+
+
+/*
+    ==========
+    Login page 
+    ==========
+*/
+
+
+/* -------- Registration form -------- */
+
+.input-box {
+    
+    margin-bottom: 25px;
+    overflow: hidden;
+
+}
+
+.input-box:last-of-type {
+    margin-top: 40px;
+}
+
+.input-box input {
+    
+    padding: 15px;
+    float: right;
+}
+
+.input-box p {
+    
+    float: left;
+    margin-right: 25px;
+    transform: translate(0, 50%);
+
+}
+
+.input-box.sub-btn {
+    overflow: visible;
+}
+
+.center-box {
+
+    margin-left: 50%;
+    margin-top: 120px;
+    transform: translate(-50%);
+    display: inline-block;
+}
+
+.center-box h2 {
+    margin-bottom: 30px;
+}
+
+
+
+/* 
+    ============================
+    Classes for processing in JS
+    ============================
+
+*/
 
 
 .hidden {display: none; }
 
 .nav-active {width: 100%; }
+
+.msg-text { color: #930202;}
+
+.msg-link { color: #e07519;}
+
 

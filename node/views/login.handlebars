@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 
-<head>
+<html>
 
-    <title>Hardware Exchange</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="../css/login.css" rel="stylesheet" type="text/css">
-    <link href="../css/queries.css" rel="stylesheet" type="text/css">
-    
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/script.js"></script>
-    
-</head>
+    <head>
 
-<body>
-
-    <header>
+        <title>Hardware Exchange</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <nav>
+        <link href="../css/style.css" rel="stylesheet" type="text/css">
+        <link href="../css/queries.css" rel="stylesheet" type="text/css">
+        
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/script.js"></script>
+        
+    </head>
+
+    <body>
+
+        <header>
             
-            <div class="row">
+            <nav class="black-background">
                 
-                <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
-                <ul class="main-nav">
-                    <li><a href="/login">Log in</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li><div class="hamburger-menu"></div></li>
-                </ul>   
- 
+                <div class="row">
+                    
+                    <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
+                    <ul class="main-nav">
+                        <li><a href="/login">Log in</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><div class="hamburger-menu"></div></li>
+                    </ul>   
+    
+                </div>
+
+            </nav>
+            
+        </header>
+        
+        <section class="login-user">
+            
+            
+            <div class="center-box">
+                <div><h2>Log in</h2></div>
+                <form method="post" action="/login">
+                    
+                    <div class="input-box">
+                        <p>Email:</p>                   
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="input-box">
+                        <p>Password:</p>                    
+                        <input type="password" name="passwd" required>
+                    </div>
+                    <div id="msg"></div>
+                    <div class="input-box sub-btn">
+                        <input type="submit" value="Log in">
+                    </div>
+                    
+                </form>
+                
             </div>
+        
+        
+        
+        </section>
+        
+    </body>
 
-        </nav>
-        
-    </header>
-    
-    <section class="login-user">
-        
-        
-        <div class="center-box">
-            <div><h2>Log in</h2></div>
-            <form method="post" action="/login">
-                
-                <div class="input-box">
-                    <p>Email:</p>                   
-                    <input type="email" name="email" required>
-                </div>
-                <div class="input-box">
-                    <p>Password:</p>                    
-                    <input type="password" name="passwd" required>
-                </div>
-                <div id="msg"></div>
-                <div class="input-box sub-btn">
-                    <input type="submit" value="Log in">
-                </div>
-                
-            </form>
-            
-        </div>
-    
-    
-    
-    </section>
-    
-</body>
-    
+</html>

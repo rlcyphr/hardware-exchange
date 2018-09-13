@@ -7,7 +7,7 @@
         <title>Hardware Exchange</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link href="../css/account.css" rel="stylesheet" type="text/css">
+        <link href="../css/style.css" rel="stylesheet" type="text/css">
         <link href="../css/queries.css" rel="stylesheet" type="text/css">
         
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
@@ -15,6 +15,7 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="../js/script.js"></script>
+
         
     </head>
 
@@ -22,7 +23,7 @@
 
         <header>
             
-            <nav>
+            <nav class="black-background">
                 
                 <div class="row">
                     
@@ -45,10 +46,11 @@
 
                 <div class="header-box">
                     <div class="icon-box"></div>
-                    <h1 id="accountName"></h1>
+                    <div id="accountName"></div>
                 </div>
 
                 <div class="info-box">
+                    <img src="/img/icons/mail.svg">
                     <div>Email: <span id="email"></span></div>
                     <div>Account Created: <span id="date-created"></span></div>
                 </div>
@@ -80,115 +82,108 @@
 
 
 
-    <script>
+        <script>
 
-        // grab email from cookie and show on page
+            // grab email from cookie and show on page
 
-        function getCookie(name) {
-            var value = "; " + document.cookie;
-            var parts = value.split("; " + name + "=");
-            if (parts.length == 2) return parts.pop().split(";").shift();
-        }
-
-        var email = getCookie('email');
-        $('#email').html(decodeURIComponent(email));
-
-        // GET /userinfo
-
-        $.get( "/userinfo", (data) => {
-            $("#accountName").html("Welcome, " + data.rows[0].username + "!");
-            $('#email').html(data.rows[0].email);
-            var d = new Date(parseInt(data.rows[0].dateCreated)).toUTCString();
-            
-            let datelist = d.split(' ').splice(0, 4);
-            let date = '';
-            for (let i = 0; i < datelist.length; i++) {
-                date += datelist[i] + ' '; 
+            function getCookie(name) {
+                var value = "; " + document.cookie;
+                var parts = value.split("; " + name + "=");
+                if (parts.length == 2) return parts.pop().split(";").shift();
             }
 
-            $('#date-created').text(date);
-        });
+            var email = getCookie('email');
+            $('#email').html(decodeURIComponent(email));
 
+            // GET /userinfo
 
-        /*  
-            -----------------------------------------------------------------------------------------------------------------------
-            GET /component for the logged in user - need to check the cookie for email, then check in the database for the user ID,
-            then return a list of all components that the user has added by their ID.
-            -----------------------------------------------------------------------------------------------------------------------
-        */  
-
-
-        // get user ID by their email
-
-
-        $.get("/partslist", (list) => {
-
-            // stuff here for using stuff from the db and inputting into the appropriate fields on the page
-            console.log(list.rows);
-            let items = list.rows;
-            console.log(items.length);
-
-            /*
-                Testing code for element creation and repeater
-
-            */
-
-
-            // create the containing element
-
-            for (let i = 0; i < items.length; i++) {
-
-                var containerDiv = document.createElement("div");
-                $(containerDiv).addClass("item-view");
-                document.getElementById("elem").appendChild(containerDiv);
-
-                // create image container
-
-                $(containerDiv).append("<div class=\"img-container\"></div>");
-
-                // and paragraphs, including container
-
-                var title_container = document.createElement("div");
-                $(title_container).addClass("title-container");
-
-
-                var image_title = document.createElement("p");
-                $(image_title).text(items[i].title).addClass("img-title");
-
-                var component_type = document.createElement("p");
-                $(component_type).text(items[i].componentTypeDescription).addClass("comp-type");
-
-                // create description div and paragraph
-
-                var desc_holder = document.createElement("div");
-                $(desc_holder).addClass("desc-container");
+            $.get( "/userinfo", (data) => {
+                $("#accountName").html("Welcome, " + data.rows[0].username + "!");
+                $('#email').html(data.rows[0].email);
+                var d = new Date(parseInt(data.rows[0].dateCreated)).toUTCString();
                 
-                var desc = document.createElement("p");
-                $(desc).text(items[i].description).addClass("desc");
+                let datelist = d.split(' ').splice(0, 4);
+                let date = '';
+                for (let i = 0; i < datelist.length; i++) {
+                    date += datelist[i] + ' '; 
+                }
 
-                // append all of the created elements
-
-                $(containerDiv).append(title_container);
-                $(title_container).append(image_title);
-                $(title_container).append(component_type);
-                $(desc_holder).append(desc);
-                $(containerDiv).append(desc_holder);
-
-            }
+                $('#date-created').text(date);
+            });
 
 
+            /*  
+                -----------------------------------------------------------------------------------------------------------------------
+                GET /component for the logged in user - need to check the cookie for email, then check in the database for the user ID,
+                then return a list of all components that the user has added by their ID.
+                -----------------------------------------------------------------------------------------------------------------------
+            */  
 
 
-
-        });
-
-    
+            // get user ID by their email
 
 
+            $.get("/partslist", (list) => {
+
+                // stuff here for using stuff from the db and inputting into the appropriate fields on the page
+                console.log(list.rows);
+                let items = list.rows;
+                console.log(items.length);
+
+                /*
+                    Testing code for element creation and repeater
+
+                */
 
 
+                // list all of the user's items on their page
 
-    </script>
+                for (let i = 0; i < items.length; i++) {
+
+                    var containerDiv = document.createElement("div");
+                    $(containerDiv).addClass("item-view");
+                    document.getElementById("elem").appendChild(containerDiv);
+
+
+                    // create image container
+                    $(containerDiv).append("<div class=\"img-container\"></div>");
+
+
+                    // container
+                    var title_container = document.createElement("div");
+                    $(title_container).addClass("title-container");
+
+
+                    // title
+                    var image_title = document.createElement("p");
+                    $(image_title).text(items[i].title).addClass("img-title");
+
+
+                    //component type
+                    var component_type = document.createElement("p");
+                    $(component_type).text(items[i].componentTypeDescription).addClass("comp-type");
+
+
+                    // create description div and paragraph
+                    var desc_holder = document.createElement("div");
+                    $(desc_holder).addClass("desc-container");
+                    var desc = document.createElement("p");
+                    $(desc).text(items[i].description).addClass("desc");
+
+
+                    // append all of the created elements
+                    $(containerDiv).append(title_container);
+                    $(title_container).append(image_title);
+                    $(title_container).append(component_type);
+                    $(desc_holder).append(desc);
+                    $(containerDiv).append(desc_holder);
+
+                }
+
+            });
+
+        </script>
+
 
     </body>
 

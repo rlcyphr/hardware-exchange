@@ -155,13 +155,12 @@ input[type=submit]:hover {
 h2 {
     
     font-weight: 600;
-    font-size: 165%;    
     margin-left: 50%;
     transform: translate(-50%);
-    margin-bottom: 60px;
     display: inline-block;
 
 }
+
 
 /* -------- Classes for processing in JS -------- */
 
