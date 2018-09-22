@@ -2,47 +2,16 @@
 
 <html>
     
-    <head>
-
-        <title>Hardware Exchange</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link href="../css/style.css" rel="stylesheet" type="text/css">
-        <link href="../css/queries.css" rel="stylesheet" type="text/css">
-        
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        
-        
-        
-    </head>
+    {{> head}}
 
     <body>
 
-        <header>
-        
-            <nav class="black-background">
-            
-                <div class="row">
-                
-                    <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
-                    
-                    <ul class="main-nav">
-                        <li><a href="/login">Log in </a></li>
-                        <li><a href="/register">Register</a></li>
-                        <li><div class="hamburger-menu"></div></li>
-                    </ul>   
- 
-                </div>
-
-            </nav>
-        
-        </header>
+        {{> header}}
 
         
         <div class="center-box">
 
-            <p class="form-title">Add item</p>
+            <h2>Add item</h2>
 
             <!-- the form to add the item to the server -->
 
@@ -53,7 +22,7 @@
                     <input type="text" name="title" required>
                 </div>
                 <div class="input-box">
-                    <p>Description:</p>                    
+                    <p class="no-float">Description:</p>                    
                     <textarea name="description" placeholder="Add a description..."></textarea>
                 </div>
                 <div class="input-box">

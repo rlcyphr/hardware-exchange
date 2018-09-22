@@ -2,43 +2,11 @@
 
 <html>
     
-    <head>
-
-        <title>Hardware Exchange</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link href="../css/style.css" rel="stylesheet" type="text/css">
-        <link href="../css/queries.css" rel="stylesheet" type="text/css">
-        
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="../js/script.js"></script>
-
-        
-    </head>
+    {{> head}}
 
     <body>
 
-        <header>
-            
-            <nav class="black-background">
-                
-                <div class="row">
-                    
-                    <div id="page-header-text"><a href="/">hardware <span class="orange">exchange</span></a></div>
-                    <ul class="main-nav">
-                        <li><a href="/login">Log in</a></li>
-                        <li><a href="/register">Register</a></li>
-                        <li><div class="hamburger-menu"></div></li>
-                    </ul>   
-    
-                </div>
-
-            </nav>
-            
-        </header>
+        {{> header}}
 
         <section id="account-details">
 
@@ -46,18 +14,16 @@
 
                 <div class="header-box">
                     <div class="icon-box"></div>
-                    <div id="accountName"></div>
+                    <h1 id="accountName"></h1>
                 </div>
 
                 <div class="info-box">
-                    <img src="/img/icons/mail.svg">
+                    <!--<img src="/img/icons/mail.svg">-->
                     <div>Email: <span id="email"></span></div>
                     <div>Account Created: <span id="date-created"></span></div>
                 </div>
 
-                <div class="row">
-                    <button class="sub-btn" onclick="document.location.href='/addItem'">Add item</button>
-                </div>
+                
 
             </div>
 
@@ -71,6 +37,7 @@
 
             <div class="row">
                 <h2>Your items</h2>
+                <div class="btn-holder"><button class="large-btn circle-btn" onclick="document.location.href='/addItem'"><img src="img/icons/add-item.svg"></button></div>
             </div>
 
             <div class="row item-holder" id="elem"></div> 

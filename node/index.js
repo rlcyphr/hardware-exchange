@@ -23,8 +23,6 @@ const validator = require('email-validator');
 const cookie_parser = require('cookie-parser');
 
 
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // -------- Start web server and get web pages, as well as set renderer
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -42,6 +40,7 @@ app.use(body_parser.urlencoded( {extended:true} )); // tell express server to us
                                                      // lets it grab contents of posted form fields
 app.use('/', express.static(path.join(process.cwd(), 'public'))) // set static assets directory to /public for handlebars renderer
 app.use(cookie_parser());
+
 
 
 
@@ -167,20 +166,6 @@ function genCookie(email, password) {
     let data = bcrypt.hashSync((email + password), 10);
     return data;
 }
-
-// -------- check that object is one of the allowed options -------- 
-
-/*function validOption(item, array) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] == item) {
-            return true;
-        }
-    }
-
-    return false;
-}
-*/
-
 
 // +++++++++++++++++++++++++++++++
 // -------- website calls --------

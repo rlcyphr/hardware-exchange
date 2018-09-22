@@ -15,9 +15,7 @@
     box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
+::-webkit-scrollbar {display: none;}  
 
 body {
     font-size: 20px;
@@ -39,7 +37,14 @@ a {text-decoration: none; }
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/logo.JPG");
     background-size: cover;
     height: 100vh;
+    position: relative;
     
+}
+
+h1 {
+    font-size: 240%;
+    float: right;
+    font-weight: 600;
 }
 
 h2 {
@@ -57,6 +62,12 @@ h2 {
     background-color: #000;
 }
 
+/* Lower main nav bar for index page & pages with full screen image */
+
+.fullimg-navbar {padding-top: 30px; }
+
+
+
 
 /* -------- Reusable parts -------- */
 
@@ -65,6 +76,12 @@ h2 {
     
     width: 1140px;
     margin: 0 auto;
+    position: relative;
+}
+
+.centre-wrapper {
+    height: 100%;
+
 }
 
 
@@ -89,9 +106,7 @@ h2 {
 /* -------- Navigation -------- */
 
 
-nav .row {
-    padding: 17.5px 0; 
-}
+nav .row {padding: 20px 0; }
 
 
 .main-nav {
@@ -108,9 +123,7 @@ nav .row {
     margin: 0 40px;
 }
 
-.main-nav li:last-of-type {
-    margin-right: 0;
-}
+.main-nav li:last-of-type {margin-right: 0; }
 
 .main-nav li a {
     
@@ -130,9 +143,7 @@ nav .row {
     
 }
 
-.hamburger-menu:hover {
-    transform: scale(1.15);
-}
+.hamburger-menu:hover {transform: scale(1.15); }
 
 
 
@@ -147,52 +158,95 @@ nav .row {
 /* -------- Buttons -------- */
 
 
-.search-box-main {
-    
-    padding: 20px;
-    width: 50%;
-    vertical-align: top;
-    font-size: 80%;
-    margin-left: 25%;
+/* -------- Search box info -------- */
+
+header .row {
+    position: relative;
+}
+
+.search-box {
+    height: 100%;
+    width: calc(100% - 54px);
+    padding: 17.5px 10px;
+}
+
+header > .row:last-of-type {
+    position: absolute;
+    bottom: 250px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.search-wrapper {
+    box-shadow: 2.5px 2.5px 1.25px #222;
 }
 
 
-.btn-search {
+header .search-box {
+    float: left;
     
+}
+
+.header .sub-btn, button {
+    height: 54px;
+    width: 54px;
     background-color: #e07519;
-    height: 62px;
-    width: 62px;
-    margin-left: -5px;
     border: none;
     cursor: pointer;
 }
 
-.btn-search img {transform: scale(0.65); }
-
-.main-search {
-    
-    margin-top: 50vh;
-    transform: translate(0, -50%);
-    height: 62px;
-    
+.sub-btn img {
+    transform: scale(0.8);
+    transition: transform 0.3s;
 }
 
+.sub-btn img:hover {
+    transform: scale(0.95);
+}
+
+.large-btn {
+    width: 75px;
+    height: 75px;
+    border: none;
+    background-color: #e07519;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.circle-btn {
+    border-radius: 50%;
+}
+
+.btn-holder {
+    position: absolute; 
+    top: 12px;
+    right: 60px;
+}
+
+.search-wrapper {
+    transform: translate(-50%, 0);
+    margin-left: 50%;
+}
+
+
 /*
+
     ============
     Account page
     ============
+    
 */
 
 
-#account-details .row:first-of-type {
-    margin-bottom: 100px;
-}
+#account-details .row:first-of-type {margin-bottom: 100px; }
 
 .info-box {
     clear: both; 
     width: 80%;
     margin-left: 10%;
     margin-top: 80px;
+    margin-bottom: 100px;
 }
 
 
@@ -221,12 +275,6 @@ nav .row {
     margin-top: 5px;
 }
 
-#accountName {
-    font-size: 240%;
-    transform: translate(0, 15%);
-    float: right;
-    font-weight: 600;
-}
 
 .header-box {
     display: inline-block;
@@ -243,18 +291,14 @@ nav .row {
 
     display: block;
     color: white;
-    border: none;
     transition: transform 0.3s;
-    cursor: pointer;
+    overflow: hidden;
 
 }
 
-.sub-btn input {
-    float: right;
-}
+.sub-btn input {float: right; }
 
 input[type=submit] {
-   
     
     background-color: #e07519;
     border: none;
@@ -282,12 +326,10 @@ input[type=submit]:hover {
 
 #added-items .row:first-of-type {
     margin-bottom: 80px;
+    padding: 30px 0;
 }
 
-.item-holder {
-    overflow: hidden;
-
-}
+.item-holder {overflow: hidden; }
 
 .item-view {
     float: left;
@@ -336,9 +378,9 @@ input[type=submit]:hover {
 
 
 /*
-    ==========
-    Login page 
-    ==========
+    =====================
+    Boxes - central boxes
+    =====================
 */
 
 
@@ -351,26 +393,36 @@ input[type=submit]:hover {
 
 }
 
-.input-box:last-of-type {
-    margin-top: 40px;
-}
-
 .input-box input {
     
     padding: 15px;
     float: right;
+
+}
+
+.input-box input, select {
+    width: 100%;
+}
+
+.input-box input[type="submit"] {
+    width: auto;
+}
+
+.input-box p.no-float {
+    float: none;
 }
 
 .input-box p {
     
     float: left;
     margin-right: 25px;
-    transform: translate(0, 50%);
+    margin-bottom: 5px;
 
 }
 
 .input-box.sub-btn {
     overflow: visible;
+
 }
 
 .center-box {
@@ -385,9 +437,34 @@ input[type=submit]:hover {
     margin-bottom: 30px;
 }
 
+/* 
+    =============
+    Add item form
+    ============= 
+
+*/
+
+.input-box textarea {
+    padding: 15px;
+    width: 640px;
+    height: 300px;
+}
+
+/* 
+
+    =======================
+    Other effects for items 
+    =======================
+
+*/
+
+.large-btn:hover {
+    transform: scale(1.15);
+}
 
 
 /* 
+
     ============================
     Classes for processing in JS
     ============================

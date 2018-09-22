@@ -2,27 +2,13 @@
 
 <html>
 
-    <head>
-
-        <title>Hardware Exchange</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link href="../css/style.css" rel="stylesheet" type="text/css">
-        <link href="../css/queries.css" rel="stylesheet" type="text/css">
-        
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="../js/script.js"></script>
-        
-    </head>
+    {{> head}}
 
     <body>
 
         <header class="header">      
             
-            <nav>
+            <nav class="fullimg-navbar">
                 
                 <div class="row">
                     
@@ -39,9 +25,11 @@
             </nav>
             
                 
-            <div class="row main-search">
-                <input type="text" placeholder="Find hardware" class="search-box-main" required>
-                <button class="btn-search"><img src="img/icons/search.svg"></button> 
+            <div class="row">
+                <div class="search-wrapper">
+                    <input type="text" placeholder="Find hardware" class="search-box" required>
+                    <div class="sub-btn"><button><img src="img/icons/search.svg"></button></div>
+                </div>
             </div>
             
         </header>
