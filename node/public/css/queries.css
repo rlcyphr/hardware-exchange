@@ -1,0 +1,277 @@
+@media only screen and (min-width: 1140px) {
+    
+    .hamburger-menu {display: none; }
+
+}
+
+/*
+    Adjustments to row width for screens that are smaller than the average desktop screen but larger
+    than the screens of most mobile devices
+*/
+
+@media only screen and (max-width: 1139px) and (min-width: 768px) {
+
+    .header-box h1 {font-size: 180%; }
+    
+    .row {width: 100%; }
+
+    #page-header-text {margin-left: 30px; }
+    
+    
+    .img-box {
+
+        width: 30%;
+        margin: 0 10%;
+        margin-bottom: 30px;
+
+    }
+    
+    .main-nav li a {font-size: 105%; }
+
+    .input-box textarea {
+        width: 560px;
+        height: 260px;
+    }
+
+    /* set margin to a quarter of the width of the screen, minus the width of the image */
+
+    .item-view {
+        margin: 0 calc(25% - 150px) 80px calc(25% - 150px);
+    }
+
+}
+
+
+
+
+/*  --------------------------------------------------------------------------
+    navbar on smaller screens, but larger than those that use the mobile view 
+    --------------------------------------------------------------------------
+*/
+
+
+
+
+@media only screen and (max-width: 864px) and (min-width: 768px) {
+
+    .input-box textarea {
+        width: 440px;
+        height: 200px;
+    }
+
+    .main-nav li {
+
+        margin: 0 30px 0 0;
+        font-size: 80%;
+
+    }
+
+    .main-nav {
+
+        transform: translate(0, 75%);
+    }
+
+    #page-header-text a {
+        font-size: 180%;
+    }
+
+}
+
+
+
+
+/*  -----------------------------------------------------------------------------
+    Media queries for phones and tablets - most of the adjustments are made here 
+    -----------------------------------------------------------------------------
+*/
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+    
+    /* -------- row sizing -------- */
+
+    .row {
+        width: 100%;
+        padding: 15px 0;
+    }
+
+
+    /* -------- HW exchange logo at the top of the page -------- */
+
+
+
+    #page-header-text {margin-left: 30px; }
+
+    #page-header-text a {font-size: 150%; }
+
+
+    /* -------- Mobile navigation - text formatting --------  */
+    
+    
+    nav .row {
+        
+        z-index: 1;
+        padding: 15px 0;
+        background: rgba(0, 0, 0, 0.75);
+        
+    }
+
+    .main-nav {
+        transform: translate(0, 0); 
+    }
+
+    .main-nav li:last-of-type {
+        margin: 0;
+        float: right;
+    }
+
+    .main-nav li {
+
+        float: none;
+        margin: 0;
+    }
+
+    .main-nav.nav-active {
+        margin-top: 15px;
+        background-color: #393939;
+
+    }
+
+    .main-nav.nav-active li a {
+        display: block;
+        padding: 15px;
+
+    }
+
+    .main-nav.nav-active li a:hover {
+        background-color: #535353;
+
+    }
+
+    .main-nav.nav-active .hamburger-menu {
+        position: absolute;
+        top: -52.5px;
+        right: 0;
+    }
+
+    
+
+    /* -------- Mobile navigation - hamburger menu -------- */
+
+
+
+    .hamburger-menu {
+
+        display: block;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;    
+        transition: transform 0.3s;
+        background-image: url('../img/icons/menu.svg');
+        margin-right: 30px;
+        
+    }
+
+    .hamburger-menu:hover {transform: scale(1.15); }
+
+
+    /* -------- containers for item displays -------- */
+
+
+
+    .img-box {
+        
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    
+    .img-box img {
+        width: 80%;
+        margin-left: 10%; 
+    }
+
+    .icon-box {
+        float: none;
+        margin-left: 50%;
+        transform: translate(-50%, 0);
+        margin-bottom: 30px;
+    }
+
+    .box {font-size: 90%; }
+
+
+    /* -------- Header for account page -------- */
+
+
+    h1 {
+        font-size: 180%;
+        transform: translate(0, 0);
+        float: right;
+
+    }
+
+    /* -------- Size of the text area on smaller screens -------- */
+
+    .input-box textarea {
+        padding: 15px;
+        width: 360px;
+        height: 160px;
+    }
+
+    /* -------- Size of image boxes for the 'your items' section -------- */
+
+    .item-view {
+        margin: 0 0 80px 50%;
+        transform: translate(-50%, 0);
+    }
+
+
+}
+
+
+
+
+/* -----------------------------------------------------------------
+   Minor adjustments for very small screens, such as those on phones
+   ----------------------------------------------------------------- */
+
+
+
+
+@media only screen and (max-width: 648px) {
+
+    .input-box p {
+        float: none;
+        margin-bottom: 15px;
+    }
+
+    .box {
+        float: none;
+        display: block;
+    }
+
+    .info-box {
+        border-top: 1px solid #a5a5a5;
+        padding: 25px 0;
+    }
+    .info-box div {
+        display: block;
+        margin-bottom: 40px;
+    }
+
+    .info-box div:last-of-type {
+        float: none;
+        margin-top: 25px;
+    }
+
+
+
+}
+
+
+
+
