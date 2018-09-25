@@ -46,6 +46,28 @@ $(document).ready(function() {
 
     });
 
+    // set background colours and other page-specific adjustments here
+    $(() => {
+        var page_url = window.location.href; // returns the full URL
+        console.log(page_url);
+
+
+        page = page_url.slice(21); // get everything after the domain name 
+        console.log(page);
+        console.log(page.length);
+
+        if (page.length == 1) { // add classes based on length of the page title - going to be changed for release, this is just a test
+
+            $('nav').addClass('fullimg-navbar');
+
+        } else {
+
+            $('nav').addClass('black-background');
+        }
+
+
+      });
+
 
  
 });
