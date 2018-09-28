@@ -10,6 +10,7 @@
 
 
 * {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,6 +19,7 @@
 ::-webkit-scrollbar {display: none;}  
 
 body {
+
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
     height: 100%;
@@ -25,26 +27,38 @@ body {
     overflow-x: hidden;
 }
 
-ul {list-style: none;}
+ul {list-style: none; }
+ul li {transition: transform 0.3s; }
 
 a {
+
     text-decoration: none; 
     color: white;
 }
 
+button {
+
+    border: none;
+    background-color: #e07519;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
 
 /* -------- Headers -------- */
 
 
 .background-image {
+
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/logo.JPG");
     background-size: cover;
     height: 100vh;
     position: relative;
     margin-top: -118px;
+    margin-bottom: 70px;
 }
 
 h1 {
+
     font-size: 240%;
     float: right;
     font-weight: 600;
@@ -61,28 +75,19 @@ h2 {
 
 /* black background for pages that use it */
 
-.black-background {
-    background-color: #000;
-}
+.black-background {background-color: #000; }
 
 /* Lower main nav bar for index page & pages with full screen image */
 
-nav .row {
-    z-index: 1;
+nav .row {z-index: 1; }
 
-}
+header .row {position: relative; }
 
-header .row {
-    position: relative;
-}
-
-.fullimg-navbar {
-    padding-top: 30px;
-}
+.fullimg-navbar {padding-top: 30px; }
 
 /* -------- Reusable parts -------- */
 
-
+ 
 .row {
     
     width: 1140px;
@@ -90,10 +95,7 @@ header .row {
     position: relative;
 }
 
-.centre-wrapper {
-    height: 100%;
-
-}
+.centre-wrapper {height: 100%; }
 
 
 /* -------- Logo -------- */
@@ -158,7 +160,10 @@ nav .row {padding: 20px 0; }
 
 
 
+/* ************************* */
 /* -------- Buttons -------- */
+/* ************************* */
+
 
 
 /* ** sub-btn (call to action) settings ** */
@@ -167,25 +172,31 @@ nav .row {padding: 20px 0; }
     position: absolute;
     display: inline-block;
     height: auto; 
+    width: auto;
 }
 
 .sub-btn button { /* actual button contained by the sub-btn class */
     border-radius: 20px;
-    background-color: #e07519;
     color: white;
-    border: none;
-    padding: 15px;
     width: 100%;
     height: 100%;
     font-size: 100%;
-    cursor: pointer;
+}
+.sub-btn img {
+    width: 40px;
+    height: 40px;
 }
 
-.large-btn { /* larger button for homepage */
+/* larger button for homepage */
+
+.large-btn { 
     width: auto;
-    top: 70vh;
     margin-left: 50%;
     transform: translate(-50%, 0);
+}
+
+.homepg-btn {
+    top: 70vh;
 }
 
 .sub-btn.large-btn button {
@@ -196,18 +207,33 @@ nav .row {padding: 20px 0; }
     font-weight: 400;
 }
 
-.sub-btn.large-btn button:hover {
-    transform: scale(1.15);
+.large-btn img {
+    width: 100%;
+    height: 100%;
 }
 
-.circle-btn {
-    border-radius: 50%;
+
+/* other button properties */
+
+.circle-btn {border-radius: 50%; }
+
+.img-btn {width: 100%; height: 100%; }
+
+/* sizes of button */
+
+.med-btn {
+    width: 75px;
+    height: 75px;
 }
 
 .btn-holder {
     position: absolute; 
     top: 12px;
     right: 60px;
+}
+
+.enlarge:hover {
+    transform: scale(1.15);
 }
 
 

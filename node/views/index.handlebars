@@ -10,8 +10,8 @@
 
         <div class="background-image">
             <div class="row">
-                <div class="sub-btn large-btn">
-                    <button><a href="/register">Register for an account now!</a></button>
+                <div class="sub-btn large-btn homepg-btn">
+                    <button class="enlarge"><a href="/register">Register for an account now!</a></button>
                 </div>
             </div>
         </div>
@@ -55,9 +55,7 @@
             $.get("/partslist", (list) => {
 
                 // stuff here for using stuff from the db and inputting into the appropriate fields on the page
-                console.log(list.rows);
                 let items = list.rows;
-                console.log(items.length);
 
                 /*
                     Testing code for element creation and repeater
