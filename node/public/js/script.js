@@ -14,14 +14,19 @@ $(document).ready(function() {
         
 
         if ($('ul li a').hasClass('hidden') ) {
+
             // if the links have the hidden class, remove it, and set the navbar to take up 100% width
+
             $('ul li a').removeClass('hidden');
             $('.main-nav').addClass('nav-active');
+            $('nav .row').addClass("mob-no-margin");
+
 
         } else {
             // else, clicking the hamburger menu hides the dropdown box and only shows the menu
             $('ul li a').addClass('hidden');
             $('.main-nav').removeClass('nav-active');
+            $('nav .row').removeClass("mob-no-margin");
         }
         
     });

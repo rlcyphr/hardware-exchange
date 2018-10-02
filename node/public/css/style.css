@@ -53,24 +53,36 @@ button {
     background-size: cover;
     height: 100vh;
     position: relative;
-    margin-top: -118px;
     margin-bottom: 70px;
 }
 
 h1 {
 
     font-size: 240%;
-    float: right;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 h2 {
     
-    font-weight: 600;
-    margin-left: 50%;
-    transform: translate(-50%);
-    display: inline-block;
+    font-weight: 500;
+    font-size: 180%;
 
+}
+
+h3 {
+    font-size: 120%;
+    font-weight: 100;
+}
+
+/* text links */
+
+.text-link {
+    color: #e07519;
+    transform: scale(1.1);
+}
+
+.text-link:hover {
+    transition: transform 0.3s;
 }
 
 /* black background for pages that use it */
@@ -83,11 +95,19 @@ nav .row {z-index: 1; }
 
 header .row {position: relative; }
 
-.fullimg-navbar {padding-top: 30px; }
+.fullimg-navbar {padding-top: 15px; }
 
-/* -------- Reusable parts -------- */
 
- 
+
+
+/* 
+    ==============
+    Reusable parts  
+    ==============
+*/
+
+
+
 .row {
     
     width: 1140px;
@@ -98,7 +118,14 @@ header .row {position: relative; }
 .centre-wrapper {height: 100%; }
 
 
-/* -------- Logo -------- */
+
+/* 
+    ====
+    Logo 
+    ====
+*/
+
+
 
 #page-header-text {display: inline-block; }
 
@@ -116,8 +143,14 @@ header .row {position: relative; }
 .hamburger-menu {display: none; }
 
 
-/* -------- Navigation -------- */
 
+/*
+    ==========
+    Navigation
+    ==========
+*/
+
+nav {margin-bottom: 100px; }
 
 nav .row {padding: 20px 0; }
 
@@ -136,12 +169,26 @@ nav .row {padding: 20px 0; }
     margin: 0 40px;
 }
 
+.main-nav li a {
+    padding-bottom: 6px;
+    transition: border-bottom 0.3s;
+}
+
 .main-nav li:last-of-type {margin-right: 0; }
 
-.main-nav li a {
+.main-nav li {
     
     font-size: 110%;
     color: #fff;
+    
+}
+
+.main-nav li a:hover {
+    border-bottom: 2px solid #fff;
+}
+
+.main-nav.nav-active li a:hover {
+    border-bottom: none;
 }
 
 /* -------- Mobile Navigation -------- */
@@ -166,16 +213,18 @@ nav .row {padding: 20px 0; }
 
 
 
-/* ** sub-btn (call to action) settings ** */
+/* sub-btn (call to action) settings */
 
-.sub-btn { /* container for buttons */
+.sub-btn {
+    /* container for buttons */
     position: absolute;
     display: inline-block;
     height: auto; 
     width: auto;
 }
 
-.sub-btn button { /* actual button contained by the sub-btn class */
+.sub-btn button {
+    /* actual button contained by the sub-btn class */
     border-radius: 20px;
     color: white;
     width: 100%;
@@ -196,11 +245,14 @@ nav .row {padding: 20px 0; }
 }
 
 .homepg-btn {
-    top: 70vh;
+    bottom: 120px;
+}
+
+.homepg-btn button {
+    box-shadow: 0 3px 2.5px #000;
 }
 
 .sub-btn.large-btn button {
-    box-shadow: 5px 5px 5px #000;
     padding: 25px 17.5px;
     font-size: 110%;
     transition: transform 0.3s;
@@ -211,7 +263,6 @@ nav .row {padding: 20px 0; }
     width: 100%;
     height: 100%;
 }
-
 
 /* other button properties */
 
@@ -237,6 +288,7 @@ nav .row {padding: 20px 0; }
 }
 
 
+
 /*
 
     ============
@@ -244,6 +296,7 @@ nav .row {padding: 20px 0; }
     ============
     
 */
+
 
 
 #account-details .row:first-of-type {margin-bottom: 100px; }
@@ -290,7 +343,14 @@ nav .row {padding: 20px 0; }
     margin-top: 10%;
 }
 
-/* -------- Inputs -------- */
+
+
+/* 
+    ======
+    Inputs  
+    ======
+*/
+
 
 
 input[type=submit] {
@@ -308,6 +368,8 @@ input[type=submit] {
 input[type=submit]:hover {
     transform: scale(1.15);
 }
+
+
 
 /* 
     ===========================================
@@ -377,31 +439,34 @@ input[type=submit]:hover {
 */
 
 
+
 /* -------- Registration form -------- */
 
 .input-box {
     
     margin-bottom: 25px;
     overflow: hidden;
-
+    clear: both;
 }
 
 .input-box input {
     
     padding: 15px;
     float: right;
-
 }
 
 .input-box input, select {
+
     width: 100%;
 }
 
 .input-box input[type="submit"] {
+
     width: auto;
 }
 
 .input-box p.no-float {
+
     float: none;
 }
 
@@ -410,25 +475,21 @@ input[type=submit]:hover {
     float: left;
     margin-right: 25px;
     margin-bottom: 5px;
-
 }
 
 .input-box.sub-btn {
-    overflow: visible;
 
+    overflow: visible;
 }
 
 .center-box {
 
     margin-left: 50%;
-    margin-top: 120px;
     transform: translate(-50%);
-    display: inline-block;
+
 }
 
-.center-box h2 {
-    margin-bottom: 30px;
-}
+
 
 /* 
     =============
@@ -437,11 +498,28 @@ input[type=submit]:hover {
 
 */
 
+
+
 .input-box textarea {
     padding: 15px;
-    width: 640px;
+    width: 100%;
     height: 300px;
 }
+
+
+
+/*
+    ==========
+    Properties
+    ==========
+*/
+
+
+
+.centered {
+    text-align: center;
+}
+
 
 
 /* 
@@ -453,6 +531,7 @@ input[type=submit]:hover {
 */
 
 
+
 .hidden {display: none; }
 
 .nav-active {width: 100%; }
@@ -460,5 +539,3 @@ input[type=submit]:hover {
 .msg-text { color: #930202;}
 
 .msg-link { color: #e07519;}
-
-

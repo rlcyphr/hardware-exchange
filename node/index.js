@@ -366,7 +366,7 @@ app.post("/register", (req, res) => {
 
     // -------- verify email - only necessary if user modifies code in console screen --------
 
-    if (!validator.validate(email)) {
+    if (validator.validate(email) == false) {
 
         res.redirect('/register?msg=bad-email');
 

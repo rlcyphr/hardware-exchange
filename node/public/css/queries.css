@@ -61,14 +61,9 @@
 
     .main-nav li {
 
-        margin: 0 30px 0 0;
+        margin: 0 40px;
         font-size: 80%;
 
-    }
-
-    .main-nav {
-
-        transform: translate(0, 75%);
     }
 
     #page-header-text a {
@@ -95,17 +90,23 @@
 
     .row {
         width: 100%;
-        padding: 15px 0;
+        /*padding: 15px 0;*/
     }
 
 
-    /* -------- HW exchange logo at the top of the page -------- */
+    /* -------- HW exchange logo at the top of the page & other headers -------- */
 
 
 
     #page-header-text {margin-left: 30px; }
 
     #page-header-text a {font-size: 150%; }
+
+    .fullimg-navbar {padding-top: 0; }
+
+    h1 {
+        font-size: 180%;
+     }
 
 
     /* -------- Mobile navigation - text formatting --------  */
@@ -121,11 +122,7 @@
 
     .main-nav {
         transform: translate(0, 0); 
-    }
 
-    .main-nav li:last-of-type {
-        margin: 0;
-        float: right;
     }
 
     .main-nav li {
@@ -135,15 +132,14 @@
     }
 
     .main-nav.nav-active {
-        margin-top: 15px;
         background-color: #393939;
-
+        margin-top: 15px;
     }
+
 
     .main-nav.nav-active li a {
         display: block;
         padding: 15px;
-
     }
 
     .main-nav.nav-active li a:hover {
@@ -152,12 +148,8 @@
     }
 
     .main-nav.nav-active .hamburger-menu {
-        position: absolute;
-        top: -52.5px;
-        right: 0;
+        top: -39%;
     }
-
-    
 
     /* -------- Mobile navigation - hamburger menu -------- */
 
@@ -166,12 +158,14 @@
     .hamburger-menu {
 
         display: block;
+        position: absolute;
         width: 40px;
         height: 40px;
+        top: 20%;
+        right: 0;
         cursor: pointer;    
         transition: transform 0.3s;
         background-image: url('../img/icons/menu.svg');
-        margin-right: 30px;
         
     }
 
@@ -203,16 +197,6 @@
 
     .box {font-size: 90%; }
 
-
-    /* -------- Header for account page -------- */
-
-
-    h1 {
-        font-size: 180%;
-        transform: translate(0, 0);
-        float: right;
-
-    }
 
     /* -------- Size of the text area on smaller screens -------- */
 

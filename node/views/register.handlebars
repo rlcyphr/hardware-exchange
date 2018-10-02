@@ -12,8 +12,11 @@
             
             
             <div class="center-box">
-                <div><h2>Register</h2></div>
-                <form method="post" action="/register">
+
+                <div class="center-box"><h1 class="centered">Register <br/><br/></h1></div>
+
+                <div class="center-box">
+                    <form method="post" action="/register">
                     
                     <div class="input-box">
                         <p>Username:</p>                   
@@ -28,11 +31,13 @@
                         <input type="email" name="email" required>
                     </div>
                     <div id="msg"></div>
+                    <br/>
                     <div class="input-box sub-btn">
                         <input type="submit" value="Sign up!">
                     </div>
                     
-                </form>
+                    </form>
+                </div>
                 
             </div>
         
@@ -61,7 +66,7 @@
             switch (msg) {
 
                 case 'bad-email':
-                    $('#msg').text('<p class="msg-text">Please input a valid email address.</p>');
+                    $('#msg').html('<p class="msg-text">Please input a valid email address.</p>');
                     break;
                 case 'dupe-email':
                     $('#msg').html('<p class="msg-text">That email already exists - did you mean to <span><a href="/login" class="msg-link">log in?</a></span></p>');
