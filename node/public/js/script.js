@@ -3,6 +3,8 @@
 $(document).ready(function() {
 
 
+    $('.main-nav li a').addClass("animated fadeInDown");
+
     if ($(document).width() < 768) {
 
         console.log('test');
@@ -20,10 +22,11 @@ $(document).ready(function() {
             $('ul li a').removeClass('hidden');
             $('.main-nav').addClass('nav-active');
             $('nav .row').addClass("mob-no-margin");
-
+            
 
         } else {
             // else, clicking the hamburger menu hides the dropdown box and only shows the menu
+
             $('ul li a').addClass('hidden');
             $('.main-nav').removeClass('nav-active');
             $('nav .row').removeClass("mob-no-margin");
@@ -51,7 +54,7 @@ $(document).ready(function() {
 
     });
 
-    // set background colours and other page-specific adjustments here
+    // set background colours and other page-specific adjustments he
     $(() => {
         var page_url = window.location.href; // returns the full URL
         console.log(page_url);
@@ -71,8 +74,14 @@ $(document).ready(function() {
         }
 
 
-      });
+    });
 
+    $(() => {
+
+
+
+
+    });
 
  
 });

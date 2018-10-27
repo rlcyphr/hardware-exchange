@@ -737,53 +737,6 @@ app.post("/addItem", (req, res) => {
 });
 
 
-app.post('/additem2', (req, res) => {
-
-    let cookies = parseCookies(req);
-
-    // get the hash from browser
-    let hash = decodeURIComponent(cookies.hash);
-    console.log("hash = " + hash);
-
-    // build the sql command
-
-    var sql = '';
-    sql += 'SELECT * FROM public."user" ';
-    sql += 'WHERE cookie = $1; ';
-
-    pool.connect((error, client, done) => {
-
-        client.query(sql, [hash], (error, result) => {
-
-            if (error) {
-                console.log(error);
-            } else {
-                
-                if (result.rows.length == 0) {
-                    // the cookie provided does not match any user
-                    res.sendStatus(401);
-
-
-                } else {
-                    // user was found 
-                    var user = result.rows[0];
-                
-                    //now we can insert a new item - we know the user.
-                    //grab the form fields they submitted in the form..
-
-                    //insert here
-
-
-
-                }
-            }
-        });
-    });
-
-});
-
-
-
 app.listen(8081, () => {
     
     console.log("Server started");
