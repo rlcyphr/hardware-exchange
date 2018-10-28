@@ -11,7 +11,7 @@ var pg = require("pg");
 var body_parser = require("body-parser");
 const bcrypt = require('bcrypt');
 
-
+/*
 const config = {
     user: 'jtmlvbxebrseae',
     database: 'ddhoti80sbdcia',
@@ -20,8 +20,8 @@ const config = {
     port: 5432
 };
 
+*/
 
-/*
 
 const config = {
     user: 'postgres',
@@ -29,7 +29,7 @@ const config = {
     password: 'layman wizard trials',
     port: 5432
 };
-*/
+
 
 var pool = new pg.Pool(config); // creating a connection
 const path = require('path');
