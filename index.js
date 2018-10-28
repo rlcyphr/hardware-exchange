@@ -9,9 +9,9 @@ var express = require("express");
 var expressHandlebars = require("express-handlebars");
 var pg = require("pg");
 var body_parser = require("body-parser");
-const bcrypt = require('bcrypt');
+const bcrypt = require('./password');
 
-/*
+
 const config = {
     user: 'jtmlvbxebrseae',
     database: 'ddhoti80sbdcia',
@@ -20,16 +20,16 @@ const config = {
     port: 5432
 };
 
-*/
 
 
+/*
 const config = {
     user: 'postgres',
     database: 'hardware-exchange',
     password: 'layman wizard trials',
     port: 5432
 };
-
+*/
 
 var pool = new pg.Pool(config); // creating a connection
 const path = require('path');
