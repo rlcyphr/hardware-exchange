@@ -63,8 +63,8 @@
 
     .main-nav li {
 
-        margin: 0 40px;
-        font-size: 80%;
+        margin: 0 75px;
+        font-size: 95%;
 
     }
 
@@ -326,6 +326,11 @@
     */
 
 
+    .largepad {
+        padding: 25px 17.5px;
+        border-radius: 30px;
+        font-size: 80%;
+    }
 
     .med-btn {
         width: 45px;

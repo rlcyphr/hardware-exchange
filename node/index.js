@@ -11,11 +11,21 @@ var pg = require("pg");
 var body_parser = require("body-parser");
 const bcrypt = require('bcrypt');
 const config = {
+    user: 'jtmlvbxebrseae',
+    database: 'ddhoti80sbdcia',
+    password: 'eb2d84e38876849d4a14ec8fad235c954dd642234c50424487bb20ddd3e45389',
+    host: 'ec2-54-247-86-89.eu-west-1.compute.amazonaws.com',
+    port: 5432
+};
+
+/*
+const config = {
     user: 'postgres',
     database: 'hardware-exchange',
     password: 'layman wizard trials',
     port: 5432
 };
+*/
 
 var pool = new pg.Pool(config); // creating a connection
 const path = require('path');

@@ -9,8 +9,11 @@ $(document).ready(function() {
 
         console.log('test');
         $('ul li a').addClass('hidden');
+        $('.background-image > .btn-container.center-box').removeClass('largepad');
 
     }
+
+    if($(document).width() > 768) { $('.hamburger-menu').addClass('hidden'); }
 
     $('.hamburger-menu').click(function() {
         
@@ -43,11 +46,13 @@ $(document).ready(function() {
             // if larger than 768 use the larger size layout 
             $('.main-nav').removeClass('nav-active');
             $('ul li a').removeClass('hidden');
+            $('.hamburger-menu').addClass('hidden');
 
         } else {
             // else use the mobile layout
             $('ul li a').addClass('hidden');
             $('.main-nav').removeClass('nav-active');
+            $('.hamburger-menu').removeClass('hidden');
         }
         
         
@@ -76,12 +81,6 @@ $(document).ready(function() {
 
     });
 
-    $(() => {
-
-
-
-
-    });
 
  
 });
