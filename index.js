@@ -195,6 +195,7 @@ app.get('/login', (req, res) => {res.render('login'); });
 app.get('/account', requiresLogin, (req, res) => {res.render('account'); });
 app.get('/addItem', requiresLogin, (req, res) => {res.render('addItem'); });
 app.get('/added-item', (req, res) => {res.render('added-item'); });
+app.get('/item', (req, res) => {res.render('item'); });
 
 
 
